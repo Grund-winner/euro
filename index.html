@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EURO54</title>
+<link rel="icon" href="logo.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a0e27;--gold:#f0c040;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:var(--navy);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,39,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);padding:calc(var(--safe-top) + 8px) 16px 10px}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.brand{font-size:18px;font-weight:700;background:linear-gradient(135deg,var(--gold),#f7dc8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.3px}
+
+/* Games scroll */
+.games{padding:20px 0 calc(20px + var(--safe-bottom))}
+.games-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 16px 16px;cursor:grab}
+.games-scroll::-webkit-scrollbar{display:none}
+.games-scroll:active{cursor:grabbing}
+
+/* Game card */
+.game{flex-shrink:0;scroll-snap-align:start;width:128px;text-decoration:none;display:block}
+.game-img{width:128px;height:128px;border-radius:18px;object-fit:cover;display:block;transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s ease}
+.game:active .game-img{transform:scale(.94)}
+
+/* Fade-in stagger */
+.game{opacity:0;animation:cardIn .45s cubic-bezier(.34,1.56,.64,1) forwards}
+.game:nth-child(1){animation-delay:.05s}
+.game:nth-child(2){animation-delay:.08s}
+.game:nth-child(3){animation-delay:.11s}
+.game:nth-child(4){animation-delay:.14s}
+.game:nth-child(5){animation-delay:.17s}
+.game:nth-child(6){animation-delay:.20s}
+.game:nth-child(7){animation-delay:.23s}
+.game:nth-child(8){animation-delay:.26s}
+.game:nth-child(9){animation-delay:.29s}
+.game:nth-child(10){animation-delay:.32s}
+.game:nth-child(11){animation-delay:.35s}
+.game:nth-child(12){animation-delay:.38s}
+.game:nth-child(13){animation-delay:.41s}
+.game:nth-child(14){animation-delay:.44s}
+.game:nth-child(15){animation-delay:.47s}
+.game:nth-child(16){animation-delay:.50s}
+.game:nth-child(17){animation-delay:.53s}
+.game:nth-child(18){animation-delay:.56s}
+.game:nth-child(19){animation-delay:.59s}
+.game:nth-child(20){animation-delay:.62s}
+.game:nth-child(21){animation-delay:.65s}
+@keyframes cardIn{0%{opacity:0;transform:scale(.85)}100%{opacity:1;transform:scale(1)}}
+
+@media(min-width:640px){.game{width:140px}.game-img{width:140px;height:140px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img src="logo.png" alt="EURO54" class="logo">
+    <span class="brand">EURO54</span>
+  </div>
+</div>
+
+<div class="games">
+  <div class="games-scroll" id="scroll">
+
+    <a class="game" href="jeux/aviatorxx/index.html"><img class="game-img" src="games/aviat.avif" alt="Aviator" loading="lazy"></a>
+    <a class="game" href="jeux/crash/index.html"><img class="game-img" src="games/cross.avif" alt="Crash" loading="lazy"></a>
+    <a class="game" href="jeux/dice/index.html"><img class="game-img" src="games/dice.avif" alt="Dice" loading="lazy"></a>
+    <a class="game" href="jeux/mmines/index.html"><img class="game-img" src="games/mines.avif" alt="Mines" loading="lazy"></a>
+    <a class="game" href="jeux/jetx/index.html"><img class="game-img" src="games/jetx.avif" alt="JetX" loading="lazy"></a>
+    <a class="game" href="jeux/rocketqueen/index.html"><img class="game-img" src="games/rocky.avif" alt="Rocket" loading="lazy"></a>
+    <a class="game" href="jeux/avaitrix/index.html"><img class="game-img" src="games/aviam.avif" alt="Aviam" loading="lazy"></a>
+    <a class="game" href="jeux/luckjet/index.html"><img class="game-img" src="games/lucky.avif" alt="Lucky Jet" loading="lazy"></a>
+    <a class="game" href="jeux/speed/index.html"><img class="game-img" src="games/speed.avif" alt="Speed & Cash" loading="lazy"></a>
+    <a class="game" href="jeux/coin/index.html"><img class="game-img" src="games/coin.avif" alt="Coin Run" loading="lazy"></a>
+    <a class="game" href="jeux/cook/index.html"><img class="game-img" src="games/chic.avif" alt="Chicken" loading="lazy"></a>
+    <a class="game" href="jeux/train/index.html"><img class="game-img" src="games/chicken train.avif" alt="Chook Train" loading="lazy"></a>
+    <a class="game" href="jeux/balloon/index.html"><img class="game-img" src="games/balloon.avif" alt="Balloon" loading="lazy"></a>
+    <a class="game" href="jeux/dragon/index.html"><img class="game-img" src="games/fox.avif" alt="Fox" loading="lazy"></a>
+    <a class="game" href="jeux/crime-empire/index.html"><img class="game-img" src="games/tower.avif" alt="Tower" loading="lazy"></a>
+    <a class="game" href="jeux/topiciana/index.html"><img class="game-img" src="games/tropicana.avif" alt="Tropicana" loading="lazy"></a>
+    <a class="game" href="jeux/penalty/index.html"><img class="game-img" src="games/peno.avif" alt="Penalty" loading="lazy"></a>
+    <a class="game" href="jeux/rocketx/index.html"><img class="game-img" src="games/rocktx.avif" alt="RocketX" loading="lazy"></a>
+    <a class="game" href="jeux/bookofmines/index.html"><img class="game-img" src="games/nmines.avif" alt="Nmines" loading="lazy"></a>
+    <a class="game" href="jeux/metacrash/index.html"><img class="game-img" src="games/meta.avif" alt="Meta Crash" loading="lazy"></a>
+    <a class="game" href="jeux/bankrust/index.html"><img class="game-img" src="games/cross.avif" alt="Bankrust" loading="lazy"></a>
+
+  </div>
+</div>
+
+<script>
+// Drag to scroll
+const s=document.getElementById('scroll');
+let down=false,startX,sl;
+s.addEventListener('mousedown',e=>{down=true;s.style.cursor='grabbing';startX=e.pageX-s.offsetLeft;sl=s.scrollLeft});
+s.addEventListener('mouseleave',()=>{down=false;s.style.cursor='grab'});
+s.addEventListener('mouseup',()=>{down=false;s.style.cursor='grab'});
+s.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();s.scrollLeft=sl-(e.pageX-s.offsetLeft-startX)*2});
+</script>
+</body>
+</html>
