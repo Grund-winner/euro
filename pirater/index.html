@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EURO54 - Pirater</title>
+<link rel="icon" href="../logo.png">
+<style>
+/* ZOOM BLOCK - ULTRA */
+html,body{touch-action:pan-x pan-y!important;-ms-touch-action:pan-x pan-y!important;overscroll-behavior:none}
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a0e27;--gold:#f0c040;--red:#ff4444;--red-light:#ff6b35;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:var(--navy);color:#fff;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,39,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);padding:calc(var(--safe-top) + 10px) 16px 10px}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:9px;object-fit:cover;flex-shrink:0}
+.brand{font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--red),var(--red-light),#f0c040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Back button */
+.back-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s;color:rgba(255,255,255,.7);text-decoration:none;font-size:18px}
+.back-btn:active{background:rgba(255,255,255,.15)}
+
+/* Header section */
+.header-section{text-align:center;padding:24px 16px 6px}
+.header-section h1{font-size:20px;font-weight:800;background:linear-gradient(135deg,#ff4444,#ff6b35,#f0c040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;letter-spacing:.5px}
+.header-section p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.4}
+
+/* Skull icon decoration */
+.skull-deco{display:flex;justify-content:center;margin-bottom:12px}
+.skull-deco svg{width:40px;height:40px;filter:drop-shadow(0 0 10px rgba(255,68,68,.3))}
+
+/* Games grid - 2 per row (same as main page) */
+.games-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:8px 16px 20px;max-width:420px;margin:0 auto}
+
+/* Glass card wrapper */
+.game{text-decoration:none;display:block;opacity:0;animation:cardIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+.game-card{position:relative;border-radius:20px;padding:8px;background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);box-shadow:0 4px 24px rgba(0,0,0,.3),0 1px 0 rgba(255,255,255,.04) inset;transition:all .35s cubic-bezier(.25,.46,.45,.94);animation:float 4s ease-in-out infinite}
+.game-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(255,68,68,.06) 0%,transparent 50%,rgba(255,255,255,.03) 100%);pointer-events:none}
+.game-card::after{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,68,68,.15),transparent);border-radius:1px}
+
+/* Float animation - staggered per row */
+.game:nth-child(odd) .game-card{animation-delay:0s}
+.game:nth-child(even) .game-card{animation-delay:-2s}
+
+/* Tap effect */
+.game:active .game-card{transform:scale(.92);background:rgba(255,255,255,.1);box-shadow:0 2px 12px rgba(0,0,0,.4),0 0 20px rgba(255,68,68,.1);border-color:rgba(255,68,68,.2)}
+
+/* Glow on tap */
+.game-card .glow{position:absolute;inset:-2px;border-radius:22px;opacity:0;background:radial-gradient(circle,rgba(255,68,68,.15),transparent 70%);transition:opacity .3s;pointer-events:none}
+.game:active .glow{opacity:1}
+
+.game-img{width:100%;height:auto;object-fit:contain;display:block;border-radius:14px;position:relative;z-index:1;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
+.game:active .game-img{transform:scale(.95)}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+
+.game:nth-child(1){animation-delay:.03s}
+.game:nth-child(2){animation-delay:.05s}
+.game:nth-child(3){animation-delay:.07s}
+.game:nth-child(4){animation-delay:.09s}
+.game:nth-child(5){animation-delay:.11s}
+.game:nth-child(6){animation-delay:.13s}
+@keyframes cardIn{0%{opacity:0;transform:scale(.8) translateY(12px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+/* Fire badge */
+.badge{position:absolute;bottom:14px;left:14px;z-index:3;display:inline-block;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.badge-hot{background:rgba(255,68,68,.2);color:#ff6b6b;border:1px solid rgba(255,68,68,.25)}
+.badge-new{background:rgba(0,230,118,.12);color:#00e676;border:1px solid rgba(0,230,118,.2)}
+
+/* Footer */
+.footer{text-align:center;padding:12px 16px calc(var(--safe-bottom) + 12px);border-top:1px solid rgba(255,255,255,.06)}
+.footer p{font-size:11px;color:rgba(255,255,255,.2);font-weight:400}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a href="../index.html" class="back-btn">&larr;</a>
+    </div>
+    <span class="brand">EURO54</span>
+    <div style="width:36px"></div>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="header-section">
+  <div class="skull-deco">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z" fill="url(#skullGrad)"/><defs><linearGradient id="skullGrad" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#ff4444"/><stop offset="1" stop-color="#ff6b35"/></linearGradient></defs></svg>
+  </div>
+  <h1>Pirater</h1>
+  <p>Prediction des gros coefficients</p>
+</div>
+
+<!-- Games grid -->
+<div class="games-grid">
+
+  <a class="game" href="metacrash.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="metacash.avif" alt="Meta Crash" loading="lazy"><div class="badge badge-hot">Populaire</div></div></a>
+
+  <a class="game" href="rockectqueen.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="rockectqueen.avif" alt="Rocket Queen" loading="lazy"></div></a>
+
+  <a class="game" href="aviator.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="aviator.avif" alt="Aviator" loading="lazy"><div class="badge badge-hot">Populaire</div></div></a>
+
+  <a class="game" href="tropicana.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="tropicana.avif" alt="Tropicana" loading="lazy"></div></a>
+
+  <a class="game" href="rocketx.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="rocketx.avif" alt="Rocket X" loading="lazy"></div></a>
+
+  <a class="game" href="crash.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="crash.avif" alt="Crash 1win" loading="lazy"><div class="badge badge-new">Premium</div></div></a>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Tout droit r&eacute;serv&eacute; &agrave; EURO54</p>
+</div>
+
+<script>
+/* ===== ZOOM BLOCK - ULTRA ===== */
+(function(){
+  var lt=0;
+  document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(e){var n=Date.now();if(n-lt<=300)e.preventDefault();lt=n},{passive:false});
+  document.addEventListener('gesturestart',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gestureend',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='='||e.key==='0'))e.preventDefault()});
+  window.addEventListener('resize',function(){setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},100)});
+  setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},500);
+})();
+</script>
+
+<script src="../protect.js"></script>
+</body>
+</html>

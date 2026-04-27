@@ -2,106 +2,249 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>EURO54</title>
 <link rel="icon" href="logo.png">
 <style>
+/* ZOOM BLOCK - ULTRA */
+html,body{touch-action:pan-x pan-y!important;-ms-touch-action:pan-x pan-y!important;overscroll-behavior:none}
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--navy:#0a0e27;--gold:#f0c040;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:var(--navy);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:var(--navy);color:#fff;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased}
 
 /* Top bar */
-.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,39,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);padding:calc(var(--safe-top) + 8px) 16px 10px}
-.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.logo{width:36px;height:36px;border-radius:10px;object-fit:cover;flex-shrink:0}
-.brand{font-size:18px;font-weight:700;background:linear-gradient(135deg,var(--gold),#f7dc8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.3px}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,39,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);padding:calc(var(--safe-top) + 10px) 16px 10px}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:9px;object-fit:cover;flex-shrink:0}
+.brand{font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--gold),#f7dc8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* Games scroll */
-.games{padding:20px 0 calc(20px + var(--safe-bottom))}
-.games-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 16px 16px;cursor:grab}
-.games-scroll::-webkit-scrollbar{display:none}
-.games-scroll:active{cursor:grabbing}
+/* Hamburger */
+.menu-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s}
+.menu-btn:active{background:rgba(255,255,255,.15)}
+.menu-btn span{display:block;width:16px;height:1.5px;background:rgba(255,255,255,.7);border-radius:1px;transition:all .3s}
 
-/* Game card */
-.game{flex-shrink:0;scroll-snap-align:start;width:128px;text-decoration:none;display:block}
-.game-img{width:128px;height:128px;border-radius:18px;object-fit:cover;display:block;transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s ease}
-.game:active .game-img{transform:scale(.94)}
+/* Dropdown menu */
+.dropdown{position:fixed;top:calc(var(--safe-top) + 62px);right:16px;z-index:200;min-width:220px;background:rgba(20,25,56,.96);backdrop-filter:saturate(180%) blur(30px);-webkit-backdrop-filter:saturate(180%) blur(30px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:8px;opacity:0;pointer-events:none;transform:translateY(-8px) scale(.96);transition:all .25s cubic-bezier(.25,.46,.45,.94);transform-origin:top right}
+.dropdown.open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.dropdown a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;text-decoration:none;color:rgba(255,255,255,.8);font-size:14px;font-weight:500;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.dropdown a:active{background:rgba(255,255,255,.08)}
+.dropdown a svg{width:20px;height:20px;flex-shrink:0}
+.dropdown .skull-svg{width:22px;height:22px}
 
-/* Fade-in stagger */
-.game{opacity:0;animation:cardIn .45s cubic-bezier(.34,1.56,.64,1) forwards}
-.game:nth-child(1){animation-delay:.05s}
-.game:nth-child(2){animation-delay:.08s}
-.game:nth-child(3){animation-delay:.11s}
-.game:nth-child(4){animation-delay:.14s}
-.game:nth-child(5){animation-delay:.17s}
-.game:nth-child(6){animation-delay:.20s}
-.game:nth-child(7){animation-delay:.23s}
-.game:nth-child(8){animation-delay:.26s}
-.game:nth-child(9){animation-delay:.29s}
-.game:nth-child(10){animation-delay:.32s}
-.game:nth-child(11){animation-delay:.35s}
-.game:nth-child(12){animation-delay:.38s}
-.game:nth-child(13){animation-delay:.41s}
-.game:nth-child(14){animation-delay:.44s}
-.game:nth-child(15){animation-delay:.47s}
-.game:nth-child(16){animation-delay:.50s}
-.game:nth-child(17){animation-delay:.53s}
-.game:nth-child(18){animation-delay:.56s}
-.game:nth-child(19){animation-delay:.59s}
-.game:nth-child(20){animation-delay:.62s}
-.game:nth-child(21){animation-delay:.65s}
-@keyframes cardIn{0%{opacity:0;transform:scale(.85)}100%{opacity:1;transform:scale(1)}}
+/* Overlay */
+.overlay{position:fixed;inset:0;z-index:150;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
 
-@media(min-width:640px){.game{width:140px}.game-img{width:140px;height:140px}}
+/* Subtitle */
+.subtitle{text-align:center;padding:20px 16px 12px}
+.subtitle h2{font-size:15px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.3px}
+
+/* Games grid - 2 per row */
+.games-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:8px 16px 20px;max-width:420px;margin:0 auto}
+
+/* Glass card wrapper */
+.game{text-decoration:none;display:block;opacity:0;animation:cardIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+.game-card{position:relative;border-radius:20px;padding:8px;background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);box-shadow:0 4px 24px rgba(0,0,0,.3),0 1px 0 rgba(255,255,255,.04) inset;transition:all .35s cubic-bezier(.25,.46,.45,.94);animation:float 4s ease-in-out infinite}
+.game-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 50%,rgba(255,255,255,.03) 100%);pointer-events:none}
+.game-card::after{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);border-radius:1px}
+
+/* Float animation - staggered per row */
+.game:nth-child(odd) .game-card{animation-delay:0s}
+.game:nth-child(even) .game-card{animation-delay:-2s}
+
+/* Tap effect */
+.game:active .game-card{transform:scale(.92);background:rgba(255,255,255,.1);box-shadow:0 2px 12px rgba(0,0,0,.4),0 0 20px rgba(240,192,64,.1);border-color:rgba(240,192,64,.2)}
+
+/* Glow on tap */
+.game-card .glow{position:absolute;inset:-2px;border-radius:22px;opacity:0;background:radial-gradient(circle,rgba(240,192,64,.15),transparent 70%);transition:opacity .3s;pointer-events:none}
+.game:active .glow{opacity:1}
+
+.game-img{width:100%;height:auto;object-fit:contain;display:block;border-radius:14px;position:relative;z-index:1;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
+.game:active .game-img{transform:scale(.95)}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+
+.game:nth-child(1){animation-delay:.03s}
+.game:nth-child(2){animation-delay:.05s}
+.game:nth-child(3){animation-delay:.07s}
+.game:nth-child(4){animation-delay:.09s}
+.game:nth-child(5){animation-delay:.11s}
+.game:nth-child(6){animation-delay:.13s}
+.game:nth-child(7){animation-delay:.15s}
+.game:nth-child(8){animation-delay:.17s}
+.game:nth-child(9){animation-delay:.19s}
+.game:nth-child(10){animation-delay:.21s}
+.game:nth-child(11){animation-delay:.23s}
+.game:nth-child(12){animation-delay:.25s}
+.game:nth-child(13){animation-delay:.27s}
+.game:nth-child(14){animation-delay:.29s}
+.game:nth-child(15){animation-delay:.31s}
+.game:nth-child(16){animation-delay:.33s}
+.game:nth-child(17){animation-delay:.35s}
+.game:nth-child(18){animation-delay:.37s}
+.game:nth-child(19){animation-delay:.39s}
+.game:nth-child(20){animation-delay:.41s}
+.game:nth-child(21){animation-delay:.43s}
+@keyframes cardIn{0%{opacity:0;transform:scale(.8) translateY(12px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+/* Footer */
+.footer{text-align:center;padding:12px 16px calc(var(--safe-bottom) + 12px);border-top:1px solid rgba(255,255,255,.06)}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);font-weight:400}
+
+/* Info Modal */
+.info-modal{position:fixed;inset:0;z-index:300;display:none;align-items:flex-end;justify-content:center}
+.info-modal.open{display:flex}
+.info-modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .3s}
+.info-modal.open .info-modal-bg{opacity:1}
+.info-modal-sheet{position:relative;width:100%;max-width:500px;max-height:85vh;background:rgba(16,22,48,.98);backdrop-filter:saturate(180%) blur(30px);-webkit-backdrop-filter:saturate(180%) blur(30px);border:1px solid rgba(255,255,255,.08);border-bottom:none;border-radius:20px 20px 0 0;padding:0;overflow:hidden;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,0,1)}
+.info-modal.open .info-modal-sheet{transform:translateY(0)}
+.info-modal-handle{width:36px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;margin:10px auto 0}
+.info-modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 10px}
+.info-modal-header h3{font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--gold),#f7dc8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.info-modal-close{width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.info-modal-body{padding:6px 20px 30px;overflow-y:auto;max-height:calc(85vh - 70px);-webkit-overflow-scrolling:touch}
+.info-section{margin-bottom:18px}
+.info-section h4{font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.info-section h4::before{content:'';width:3px;height:14px;background:var(--gold);border-radius:2px}
+.info-section p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+.info-games-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.info-game-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:8px 10px;font-size:11px}
+.info-game-item strong{color:var(--gold);display:block;font-size:12px;margin-bottom:2px}
+.info-game-item span{color:rgba(255,255,255,.5);line-height:1.4}
+.info-promo{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,215,0,.04));border:1px solid rgba(255,215,0,.2);border-radius:14px;padding:14px 16px;text-align:center}
+.info-promo-code{font-size:22px;font-weight:800;color:#FFD700;letter-spacing:3px;margin:6px 0;text-shadow:0 0 20px rgba(255,215,0,.3)}
+.info-promo .bonus{font-size:20px;font-weight:800;color:#00e676;margin:4px 0}
+.info-promo p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
 </style>
 </head>
 <body>
 
+<!-- Top bar -->
 <div class="topbar">
   <div class="topbar-inner">
-    <img src="logo.png" alt="EURO54" class="logo">
-    <span class="brand">EURO54</span>
+    <div class="topbar-left">
+      <img src="logo.png" alt="EURO54" class="logo">
+      <span class="brand">EURO54</span>
+    </div>
+    <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </div>
 
-<div class="games">
-  <div class="games-scroll" id="scroll">
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-    <a class="game" href="jeux/aviatorxx/index.html"><img class="game-img" src="games/aviat.avif" alt="Aviator" loading="lazy"></a>
-    <a class="game" href="jeux/crash/index.html"><img class="game-img" src="games/cross.avif" alt="Crash" loading="lazy"></a>
-    <a class="game" href="jeux/dice/index.html"><img class="game-img" src="games/dice.avif" alt="Dice" loading="lazy"></a>
-    <a class="game" href="jeux/mmines/index.html"><img class="game-img" src="games/mines.avif" alt="Mines" loading="lazy"></a>
-    <a class="game" href="jeux/jetx/index.html"><img class="game-img" src="games/jetx.avif" alt="JetX" loading="lazy"></a>
-    <a class="game" href="jeux/rocketqueen/index.html"><img class="game-img" src="games/rocky.avif" alt="Rocket" loading="lazy"></a>
-    <a class="game" href="jeux/avaitrix/index.html"><img class="game-img" src="games/aviam.avif" alt="Aviam" loading="lazy"></a>
-    <a class="game" href="jeux/luckjet/index.html"><img class="game-img" src="games/lucky.avif" alt="Lucky Jet" loading="lazy"></a>
-    <a class="game" href="jeux/speed/index.html"><img class="game-img" src="games/speed.avif" alt="Speed & Cash" loading="lazy"></a>
-    <a class="game" href="jeux/coin/index.html"><img class="game-img" src="games/coin.avif" alt="Coin Run" loading="lazy"></a>
-    <a class="game" href="jeux/cook/index.html"><img class="game-img" src="games/chic.avif" alt="Chicken" loading="lazy"></a>
-    <a class="game" href="jeux/train/index.html"><img class="game-img" src="games/chicken train.avif" alt="Chook Train" loading="lazy"></a>
-    <a class="game" href="jeux/balloon/index.html"><img class="game-img" src="games/balloon.avif" alt="Balloon" loading="lazy"></a>
-    <a class="game" href="jeux/dragon/index.html"><img class="game-img" src="games/fox.avif" alt="Fox" loading="lazy"></a>
-    <a class="game" href="jeux/crime-empire/index.html"><img class="game-img" src="games/tower.avif" alt="Tower" loading="lazy"></a>
-    <a class="game" href="jeux/topiciana/index.html"><img class="game-img" src="games/tropicana.avif" alt="Tropicana" loading="lazy"></a>
-    <a class="game" href="jeux/penalty/index.html"><img class="game-img" src="games/peno.avif" alt="Penalty" loading="lazy"></a>
-    <a class="game" href="jeux/rocketx/index.html"><img class="game-img" src="games/rocktx.avif" alt="RocketX" loading="lazy"></a>
-    <a class="game" href="jeux/bookofmines/index.html"><img class="game-img" src="games/nmines.avif" alt="Nmines" loading="lazy"></a>
-    <a class="game" href="jeux/metacrash/index.html"><img class="game-img" src="games/meta.avif" alt="Meta Crash" loading="lazy"></a>
-    <a class="game" href="jeux/bankrust/index.html"><img class="game-img" src="games/cross.avif" alt="Bankrust" loading="lazy"></a>
+<!-- Dropdown -->
+<div class="dropdown" id="dropdown">
+  <a href="https://t.me/GHOSTOFF54" id="linkCanal" target="_blank" onclick="closeMenu()">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+    Canal Telegram
+  </a>
+  <a href="https://t.me/GOD_CASINO54" id="linkContact" target="_blank" onclick="closeMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    Contact Telegram
+  </a>
+  <a href="pirater/index.html" id="linkPirate" onclick="closeMenu()">
+    <svg class="skull-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z"/></svg>
+    Piraté
+  </a>
+  <a href="#" onclick="openInfo(); closeMenu(); return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    Info
+  </a>
+</div>
 
+<!-- Subtitle -->
+<div class="subtitle">
+  <h2>EURO54 · 1win Prédiction</h2>
+</div>
+
+<!-- Games grid -->
+<div class="games-grid">
+
+  <a class="game" href="jeux/astronaut/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/astronaut.avif" alt="Aviator" loading="lazy"></div></a>
+  <a class="game" href="jeux/chicken_run/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/chichen_run.avif" alt="Crash" loading="lazy"></div></a>
+  <a class="game" href="jeux/crash/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/crash.avif" alt="Dice" loading="lazy"></div></a>
+  <a class="game" href="jeux/crime-empire/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/crime_empire.avif" alt="Mines" loading="lazy"></div></a>
+  <a class="game" href="jeux/rocketqueen/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/rocky.avif" alt="Rocket" loading="lazy"></div></a>
+  <a class="game" href="jeux/fortune/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/fortune_crash.avif" alt="Aviam" loading="lazy"></div></a>
+  <a class="game" href="jeux/luckjet/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/lucky.avif" alt="Lucky Jet" loading="lazy"></div></a>
+  <a class="game" href="jeux/GOALL/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/goal.avif" alt="Speed & Cash" loading="lazy"></div></a>
+  <a class="game" href="jeux/foxjob/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/fox.avif" alt="Chook Train" loading="lazy"></div></a>
+  <a class="game" href="jeux/topiciana/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/tropicana.avif" alt="Tropicana" loading="lazy"></div></a>
+  <a class="game" href="jeux/rocketx/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/rocktx.avif" alt="RocketX" loading="lazy"></div></a>
+  <a class="game" href="jeux/metacrash/index.html"><div class="game-card"><div class="glow"></div><img class="game-img" src="games/meta.avif" alt="Meta Crash" loading="lazy"></div></a>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Tout droit réservé à EURO54</p>
+</div>
+
+<!-- Info Modal -->
+<div class="info-modal" id="infoModal">
+  <div class="info-modal-bg" onclick="closeInfo()"></div>
+  <div class="info-modal-sheet">
+    <div class="info-modal-handle"></div>
+    <div class="info-modal-header">
+      <h3>EURO54 Info</h3>
+      <button class="info-modal-close" onclick="closeInfo()">&#10005;</button>
+    </div>
+    <div class="info-modal-body">
+
+      <div class="info-section">
+        <h4>A propos</h4>
+        <p>EURO54 est une plateforme de pr&eacute;diction de jeux avanc&eacute;e qui utilise des algorithmes d'intelligence artificielle et des syst&egrave;mes d'analyse de donn&eacute;es de pointe pour fournir des pr&eacute;dictions pr&eacute;cises et fiables. Notre technologie analyse en temps r&eacute;el les tendances, les patterns et les probabilit&eacute;s pour maximiser vos chances de gain sur chaque partie.</p>
+
+      <div class="info-section">
+        <h4>Code Promo EURO54</h4>
+        <div class="info-promo">
+          <p>Utilisez ce code lors de votre inscription sur 1win</p>
+          <div class="info-promo-code">EURO54</div>
+          <div class="bonus">+500% BONUS</div>
+          <p>Le code promo EURO54 vous donne un bonus de 500% sur votre premier d&eacute;p&ocirc;t. Il facilite &eacute;galement vos d&eacute;p&ocirc;ts et retraits sur la plateforme 1win. Nos licences de pr&eacute;diction sont enti&egrave;rement synchronis&eacute;es avec l'utilisation de ce code, garantissant ainsi des chances de gain optimales et une exp&eacute;rience premium.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <script>
-// Drag to scroll
-const s=document.getElementById('scroll');
-let down=false,startX,sl;
-s.addEventListener('mousedown',e=>{down=true;s.style.cursor='grabbing';startX=e.pageX-s.offsetLeft;sl=s.scrollLeft});
-s.addEventListener('mouseleave',()=>{down=false;s.style.cursor='grab'});
-s.addEventListener('mouseup',()=>{down=false;s.style.cursor='grab'});
-s.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();s.scrollLeft=sl-(e.pageX-s.offsetLeft-startX)*2});
+const dd=document.getElementById('dropdown');
+const ov=document.getElementById('overlay');
+let open=false;
+function toggleMenu(){open=!open;dd.classList.toggle('open',open);ov.classList.toggle('open',open)}
+function closeMenu(){open=false;dd.classList.remove('open');ov.classList.remove('open')}
+function openInfo(){document.getElementById('infoModal').classList.add('open')}
+function closeInfo(){document.getElementById('infoModal').classList.remove('open')}
 </script>
-</body>
+
+<script>
+/* ===== ZOOM BLOCK - ULTRA ===== */
+(function(){
+  var lt=0;
+  document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(e){var n=Date.now();if(n-lt<=300)e.preventDefault();lt=n},{passive:false});
+  document.addEventListener('gesturestart',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gestureend',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='='||e.key==='0'))e.preventDefault()});
+  window.addEventListener('resize',function(){setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},100)});
+  setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},500);
+})();
+</script>
+
+<script src="protect.js"></script>\n</body>
 </html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EURO54 - Aviator</title>
+<link rel="icon" href="../logo.png">
+<link rel="stylesheet" href="./Aviator_files/index.css">
+<style>
+/* ZOOM BLOCK - ULTRA */
+html,body{touch-action:pan-x pan-y!important;-ms-touch-action:pan-x pan-y!important;overscroll-behavior:none}
+
+/* ============================================
+   EURO54 DESIGN SYSTEM - Pirater Red Theme
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --e54-bg-primary: #0a1628;
+  --e54-bg-secondary: #111d35;
+  --e54-red: #ff4444;
+  --e54-red-dark: #cc2222;
+  --e54-red-light: #ff6b6b;
+  --e54-red-glow: rgba(255,68,68,0.3);
+  --e54-glass: rgba(255,255,255,0.08);
+  --e54-glass-light: rgba(255,255,255,0.15);
+  --e54-glass-border: rgba(255,255,255,0.12);
+  --e54-text: #ffffff;
+  --e54-text-muted: #7b8da4;
+  --e54-radius: 18px;
+  --e54-radius-sm: 12px;
+  --e54-radius-lg: 24px;
+}
+
+/* BODY - Deep navy gradient with ambient drift */
+body.page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(145deg, #0a1628 0%, #0f1f3d 40%, #162040 70%, #0a1628 100%);
+  color: var(--e54-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body.page::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,68,68,0.04) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,107,107,0.03) 0%, transparent 50%);
+  animation: e54-ambientDrift 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes e54-ambientDrift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(30px, -20px) rotate(3deg); }
+}
+
+/* HEADER - Glassmorphism with red pirater theme */
+.euro54-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(10,22,40,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: e54-slideDown 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes e54-slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.euro54-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.euro54-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--e54-red-light), var(--e54-red), var(--e54-red-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  filter: drop-shadow(0 1px 2px rgba(255,68,68,0.3));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.euro54-pirater-sub {
+  font-size: 0.65rem;
+  color: var(--e54-red-light);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-left: 8px;
+  opacity: 0.8;
+}
+
+.euro54-back {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--e54-red-light);
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.euro54-back:active {
+  background: rgba(255,68,68,0.2);
+  transform: scale(0.95);
+}
+
+.euro54-skull-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--e54-red-light);
+  font-size: 18px;
+}
+
+.euro54-skull-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.euro54-spacer {
+  display: none;
+}
+
+/* Push page content down */
+.page { padding-top: 64px; }
+
+/* Translate English labels to French */
+.ti {
+  color: rgba(255,255,255,0.5)!important;
+  position: absolute!important;
+  margin-top: 350px!important;
+  margin-right: 245px!important;
+  font-size: 14px!important;
+  font-family: 'Inter', sans-serif!important;
+  font-weight: 600!important;
+  z-index: 5!important;
+  letter-spacing: 0.3px;
+}
+.sh {
+  color: rgba(255,255,255,0.5)!important;
+  position: absolute!important;
+  margin-top: 380px!important;
+  margin-right: 220px!important;
+  font-size: 14px!important;
+  font-family: 'Inter', sans-serif!important;
+  font-weight: 600!important;
+  z-index: 5!important;
+  letter-spacing: 0.3px;
+}
+.tg {
+  color: rgba(255,255,255,0.5)!important;
+  white-space: nowrap!important;
+  position: absolute!important;
+  margin-top: 410px!important;
+  margin-right: 130px!important;
+  font-size: 14px!important;
+  font-family: 'Inter', sans-serif!important;
+  font-weight: 600!important;
+  z-index: 5!important;
+  letter-spacing: 0.3px;
+}
+
+/* Skull badge */
+.skull-badge {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+  margin-bottom: -8px;
+  z-index: 10;
+  position: relative;
+}
+.skull-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: rgba(255,68,68,0.08);
+  border: 1px solid rgba(255,68,68,0.15);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--e54-red-light);
+  font-family: 'Inter', sans-serif;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  letter-spacing: 0.5px;
+}
+.skull-badge svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* EURO54 Floating Badge - Red Pirater Theme */
+.e54-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.15);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--e54-red-light);
+  letter-spacing: 1.5px;
+  z-index: 100;
+  animation: e54-badgeFloat 3s ease-in-out infinite;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes e54-badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+  .page { padding-top: 56px; }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body class="page">
+
+<!-- EURO54 Topbar -->
+<div class="euro54-topbar">
+  <div class="euro54-topbar-inner">
+    <a href="index.html" class="euro54-back">&larr;</a>
+    <div style="display:flex;align-items:center;">
+      <span class="euro54-brand">EURO54</span>
+      <span class="euro54-pirater-sub">Pirater</span>
+    </div>
+    <div class="euro54-skull-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- Skull badge -->
+<div class="skull-badge">
+  <span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z"/></svg>
+    Pirater - Aviator
+  </span>
+</div>
+
+<div class="loader">
+    <div class="bar"></div>
+</div>
+
+<div class="cv">
+    <img class="obloko" src="./Aviator_files/obl.svg">
+</div>
+
+<div class="winner">
+    <img class="luck" src="./Aviator_files/avia_logo.svg">
+    <img class="win" src="./Aviator_files/1win_logo.png">
+</div>
+
+<div class="rocket">
+    <button id="startButton" class="button" onclick="generateRandomNumber()">
+        OBTENIR LE SIGNAL
+    </button>
+    <button id="backButton" class="button" onclick="goBack()">
+        Retour
+    </button>
+    <p id="time" class="timer"></p>
+    <p id="chance" class="ch"></p>
+    <p id="timers" class="timerss"></p>
+    <p class="ti">Heure :</p>
+    <p class="sh">Chance :</p>
+    <p class="tg">Avant le signal :</p>
+    <img class="rocket__boy" src="./Aviator_files/avia3.svg">
+
+    <div class="section"></div>
+    <div class="section2"></div>
+    <div class="section3"></div>
+
+    <script src="./Aviator_files/script.js"></script>
+
+    <div id="result" class="rand"></div>
+
+</div>
+
+<!-- EURO54 Floating Badge -->
+<div class="e54-badge">EURO54</div>
+
+<!-- ZOOM BLOCK -->
+<script>
+(function(){
+  var lt=0;
+  document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(e){var n=Date.now();if(n-lt<=300)e.preventDefault();lt=n},{passive:false});
+  document.addEventListener('gesturestart',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gestureend',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='='||e.key==='0'))e.preventDefault()});
+  window.addEventListener('resize',function(){setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},100)});
+  setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},500);
+})();
+</script>
+
+<script src="../protect.js"></script>
+</body>
+</html>

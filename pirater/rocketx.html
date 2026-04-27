@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EURO54 - Rocket X</title>
+<link rel="icon" href="../logo.png">
+<style>
+/* ZOOM BLOCK - ULTRA */
+html,body{touch-action:pan-x pan-y!important;-ms-touch-action:pan-x pan-y!important;overscroll-behavior:none}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --e54-bg-primary: #0a1628;
+  --e54-bg-secondary: #111d35;
+  --e54-red: #ff4444;
+  --e54-red-dark: #cc2222;
+  --e54-red-light: #ff6b35;
+  --e54-gold: #FFD700;
+  --e54-glass: rgba(255,255,255,0.08);
+  --e54-glass-light: rgba(255,255,255,0.15);
+  --e54-glass-border: rgba(255,255,255,0.12);
+  --e54-text: #ffffff;
+  --e54-text-muted: #7b8da4;
+  --e54-green: #00e676;
+  --e54-radius: 18px;
+  --e54-radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(145deg, #0a1628 0%, #0f1f3d 40%, #162040 70%, #0a1628 100%);
+  color: var(--e54-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,68,68,0.04) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,107,53,0.03) 0%, transparent 50%);
+  animation: e54-ambientDrift 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes e54-ambientDrift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(30px, -20px) rotate(3deg); }
+}
+
+/* HEADER */
+.e54-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(10,22,40,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  animation: e54-slideDown 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes e54-slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.e54-header-left { display: flex; align-items: center; gap: 10px; }
+
+.e54-back {
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 17px;
+  transition: background 0.2s;
+}
+.e54-back:active { background: rgba(255,255,255,0.15); }
+
+.e54-logo {
+  font-size: 1.4rem; font-weight: 800;
+  background: linear-gradient(135deg, #ff6b6b, var(--e54-red), var(--e54-red-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.e54-logo-sub {
+  font-size: 0.6rem; color: var(--e54-text-muted); font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-left: 6px;
+}
+
+.e54-skull { width: 14px; height: 14px; color: var(--e54-red); }
+
+/* MAIN */
+.e54-main {
+  position: relative; z-index: 1;
+  padding: 80px 16px 24px;
+  max-width: 500px; margin: 0 auto;
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+}
+
+@keyframes e54-fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* GAME TITLE */
+.e54-game-title {
+  text-align: center; font-size: 1.1rem; font-weight: 600;
+  color: var(--e54-text); margin-bottom: 16px; letter-spacing: 0.3px;
+}
+
+/* Skull badge under title */
+.e54-skull-badge {
+  display: flex; justify-content: center; margin-top: -8px; margin-bottom: 16px;
+}
+.e54-skull-badge span {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px;
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.2);
+  border-radius: 16px;
+  font-size: 10px; font-weight: 600; color: #ff6b6b;
+}
+.e54-skull-badge svg { width: 12px; height: 12px; }
+
+/* GAME AREA - image card */
+.e54-game-area {
+  width: 100%; border-radius: var(--e54-radius); overflow: hidden;
+  position: relative; min-height: 180px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.25s both;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.e54-game-area-bg {
+  position: absolute; inset: 0;
+  background: url('https://1play.gamedev-tech.cc/rocketx_grm/assets/media/3d067061a138382f02a2c7697164662a.webp') center/cover;
+}
+.e54-game-area::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0.6) 0%, transparent 15%, transparent 85%, rgba(10,22,40,0.6) 100%);
+  z-index: 1; border-radius: var(--e54-radius);
+}
+
+/* PREDICTION CARD */
+.e54-prediction {
+  margin-top: 20px; padding: 20px;
+  border-radius: var(--e54-radius);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  background: linear-gradient(135deg, rgba(255,68,68,0.08) 0%, rgba(255,255,255,0.04) 100%);
+  border: 1px solid rgba(255,68,68,0.15);
+  text-align: center; position: relative; overflow: hidden;
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.35s both;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 40px rgba(255,68,68,0.05);
+}
+
+.e54-prediction::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,68,68,0.05) 50%, transparent 60%);
+  animation: e54-shimmer 4s ease-in-out infinite;
+}
+@keyframes e54-shimmer {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+.e54-prediction-label {
+  font-size: 0.7rem; font-weight: 600; color: var(--e54-red);
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;
+  position: relative; z-index: 1;
+}
+
+.e54-prediction-value {
+  font-size: 2.8rem; font-weight: 800;
+  background: linear-gradient(135deg, #ff6b6b, var(--e54-red));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  position: relative; z-index: 1; line-height: 1.2;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.e54-prediction-value.animate {
+  animation: e54-springBounce 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes e54-springBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.15); }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* STATS PANEL */
+.e54-stats {
+  margin-top: 16px; padding: 16px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--e54-radius);
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+}
+
+.e54-stat-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; font-size: 13px;
+}
+.e54-stat-row + .e54-stat-row { border-top: 1px solid rgba(255,255,255,0.05); }
+.e54-stat-label { color: var(--e54-text-muted); font-weight: 500; }
+.e54-stat-value { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* BUTTONS */
+.e54-btn-signal {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 16px 28px; border: none; border-radius: 14px;
+  font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, var(--e54-red), var(--e54-red-light));
+  background-size: 200% 200%; cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 4px 16px rgba(255,68,68,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.45s both;
+  margin-top: 20px;
+}
+.e54-btn-signal:active { transform: scale(0.96); }
+.e54-btn-signal:disabled { opacity: 0.5; transform: none; }
+
+.e54-btn-back {
+  width: 100%; padding: 14px;
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(12px);
+  color: var(--e54-text-muted); font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  transition: all 0.3s ease; margin-top: 10px;
+  animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both;
+}
+.e54-btn-back:active { transform: scale(0.97); }
+
+/* FOOTER */
+.e54-footer {
+  text-align: center; padding: 20px;
+  font-size: 0.7rem; color: rgba(255,255,255,0.2);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.e54-badge {
+  position: fixed; bottom: 16px; right: 16px;
+  padding: 6px 14px; border-radius: 20px;
+  backdrop-filter: blur(16px);
+  background: rgba(255,68,68,0.1); border: 1px solid rgba(255,68,68,0.15);
+  font-size: 0.6rem; font-weight: 700; color: var(--e54-red);
+  letter-spacing: 1.5px; z-index: 100;
+  animation: e54-badgeFloat 3s ease-in-out infinite; pointer-events: none;
+}
+@keyframes e54-badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+@media (max-width: 400px) {
+  .e54-main { padding: 70px 12px 20px; }
+  .e54-prediction-value { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="e54-header">
+  <div class="e54-header-left">
+    <a href="index.html" class="e54-back">&larr;</a>
+    <span class="e54-logo">EURO54</span>
+    <span class="e54-logo-sub">Pirater</span>
+  </div>
+  <svg class="e54-skull" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z"/></svg>
+</div>
+
+<!-- MAIN -->
+<div class="e54-main">
+  <div class="e54-game-title">Rocket X</div>
+  <div class="e54-skull-badge">
+    <span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 00-9 9c0 3.07 1.64 5.64 4 7.1V22h10v-3.9c2.36-1.46 4-4.03 4-7.1a9 9 0 00-9-9zm-2.5 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-7 1l-.5 3h7l-.5-3H7.5z"/></svg>
+      Pirater - Gros Coefficients
+    </span>
+  </div>
+
+  <!-- Game Area -->
+  <div class="e54-game-area">
+    <div class="e54-game-area-bg"></div>
+  </div>
+
+  <!-- Prediction Card -->
+  <div class="e54-prediction">
+    <div class="e54-prediction-label">Prochaine Pr&eacute;diction</div>
+    <div class="e54-prediction-value" id="multiplier">0.00X</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="e54-stats">
+    <div class="e54-stat-row">
+      <span class="e54-stat-label">Heure :</span>
+      <span class="e54-stat-value" id="timeRange">00:00-00:00</span>
+    </div>
+    <div class="e54-stat-row">
+      <span class="e54-stat-label">Chance :</span>
+      <span class="e54-stat-value" id="chance">00%</span>
+    </div>
+    <div class="e54-stat-row">
+      <span class="e54-stat-label">Avant le signal :</span>
+      <span class="e54-stat-value" id="beforeSignal">00:00</span>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="e54-btn-signal" onclick="getSignal()" id="signalBtn">OBTENIR LE SIGNAL</button>
+  <button class="e54-btn-back" onclick="window.location.href='index.html'">&larr; Retour</button>
+
+  <div class="e54-footer">EURO54 &copy; 2025</div>
+</div>
+
+<div class="e54-badge">EURO54</div>
+
+<!-- Hidden loading element for script compatibility -->
+<div style="display:none" id="loading"></div>
+
+<!-- PREDICTION LOGIC - DO NOT CHANGE -->
+<script>
+    let isGenerating = false;
+    let countdownInterval;
+    let targetTime = null;
+
+    function generateNewMultiplier() {
+        const rand = Math.random();
+        let multiplier;
+        if (rand < 0.80) {
+            multiplier = Math.random() * (12.00 - 5.00) + 5.00;
+        } else if (rand < 0.95) {
+            multiplier = Math.random() * (28.00 - 12.01) + 12.01;
+        } else {
+            multiplier = Math.random() * (59.99 - 28.01) + 28.01;
+        }
+        return Math.min(multiplier, 59.99);
+    }
+
+    function getSignal() {
+        if (isGenerating) return;
+        const btn = document.getElementById('signalBtn');
+        const multiplierDisplay = document.getElementById('multiplier');
+        const loading = document.getElementById('loading');
+        const chanceDisplay = document.getElementById('chance');
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        isGenerating = true;
+        loading.style.display = 'none';
+        multiplierDisplay.style.display = 'block';
+        const targetMultiplier = generateNewMultiplier();
+        multiplierDisplay.textContent = targetMultiplier.toFixed(2) + 'X';
+        let chanceValue;
+        if (targetMultiplier <= 12.00) {
+            chanceValue = Math.floor(Math.random() * 10) + 90;
+        } else if (targetMultiplier <= 28.00) {
+            chanceValue = 89;
+        } else {
+            chanceValue = 85;
+        }
+        chanceDisplay.textContent = chanceValue + '%';
+        setTimeout(function() {
+            generatePredictedTime();
+        }, 1000);
+    }
+    
+    function generatePredictedTime() {
+        const now = new Date();
+        const randomMinutes = Math.floor(Math.random() * 3) + 1;
+        let startTime = new Date(now.getTime() + (randomMinutes * 60 * 1000));
+        startTime.setSeconds(0);
+        startTime.setMilliseconds(0);
+        const endTime = new Date(startTime.getTime() + (1 * 60 * 1000));
+        targetTime = startTime;
+        const formatTime = function(date) {
+            return date.toTimeString().slice(0, 5);
+        };
+        document.getElementById('timeRange').textContent =
+            formatTime(startTime) + '-' + formatTime(endTime);
+        startCountdown();
+    }
+
+    function startCountdown() {
+        countdownInterval = setInterval(function() {
+            const now = new Date();
+            const timeDiff = targetTime - now;
+            if (timeDiff <= 0) {
+                clearInterval(countdownInterval);
+                const btn = document.getElementById('signalBtn');
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                isGenerating = false;
+                document.getElementById('beforeSignal').textContent = '00:00';
+                return;
+            }
+            const minutes = Math.floor(timeDiff / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            const formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            document.getElementById('beforeSignal').textContent = formattedTime;
+        }, 1000);
+    }
+</script>
+
+<!-- ZOOM BLOCK -->
+<script>
+(function(){
+  var lt=0;
+  document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(e){var n=Date.now();if(n-lt<=300)e.preventDefault();lt=n},{passive:false});
+  document.addEventListener('gesturestart',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gestureend',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='='||e.key==='0'))e.preventDefault()});
+  window.addEventListener('resize',function(){setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},100)});
+  setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},500);
+})();
+</script>
+
+<script src="../protect.js"></script>
+</body>
+</html>
