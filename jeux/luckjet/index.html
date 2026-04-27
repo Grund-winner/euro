@@ -638,7 +638,6 @@ function extractGameStage(d) {
 let lastStage = null;
 let lastRoundId = null;
 let predictedForRound = null;
-let crashDetectedAt = null;
 
 function classifyStage(stage) {
   if (!stage) return 'unknown';
@@ -657,48 +656,33 @@ async function poll() {
     const { stage, roundId, coef } = extractGameStage(data);
     const classified = classifyStage(stage);
     
-    console.log('[poll] stage=', stage, '->', classified, 'round=', roundId);
+    // Detect round end (crash) by two methods:
+    // Method 1: State went from running to non-running (flying -> waiting/crashed)
+    const stateCrashed = lastStage === 'running' && classified !== 'running';
+    // Method 2: roundId changed while game was running (API skipped waiting state)
+    const roundSkipped = lastStage === 'running' && roundId && lastRoundId && roundId !== lastRoundId;
     
-    // Detect crash: was running, now crashed or waiting
-    if (lastStage === 'running' && (classified === 'crashed' || classified === 'waiting')) {
-      console.log('[poll] CRASH DETECTED! Round ended.');
-      crashDetectedAt = Date.now();
+    if (stateCrashed || roundSkipped) {
+      // Round ended -> reset so we can predict for the next one
+      predictedForRound = null;
+      console.log('[poll] CRASH DETECTED (state=' + classified + ', round=' + roundId + ')');
     }
     
-    // After crash, predict within 2 seconds
-    if (crashDetectedAt && !predictedForRound) {
-      const elapsed = Date.now() - crashDetectedAt;
-      if (elapsed < 2000) {
-        setStatus('wait');
-        predState.textContent = 'Calcul en cours...';
-        const val = await fetchPrediction();
-        showPrediction(val);
-        predictedForRound = roundId || Date.now();
-        console.log('[poll] Prediction made for round:', predictedForRound);
-      }
-      crashDetectedAt = null;
-    }
-    
-    // Also predict if waiting and no prediction yet
-    if (classified === 'waiting' && !predictedForRound) {
+    // Predict if no active prediction exists
+    if (!predictedForRound) {
       setStatus('wait');
       predState.textContent = 'Calcul en cours...';
       const val = await fetchPrediction();
       showPrediction(val);
       predictedForRound = roundId || Date.now();
-    }
-    
-    // New round started: reset for next cycle
-    if (classified === 'running' && roundId && roundId !== lastRoundId) {
-      if (predictedForRound && predictedForRound !== roundId) {
-        predictedForRound = null;
-        crashDetectedAt = null;
+      console.log('[poll] Prediction: x' + val + ' for round ' + predictedForRound);
+    } else {
+      // Already have a prediction -> just update status display
+      if (classified === 'running') {
+        setStatus('live');
+      } else {
+        setStatus('wait');
       }
-      setStatus('live');
-    } else if (classified === 'running') {
-      setStatus('live');
-    } else if (predictedForRound) {
-      setStatus('wait');
     }
     
     lastStage = classified;
