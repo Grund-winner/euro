@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Tropicana - EURO54</title>
 <style>
-/* ZOOM BLOCK */
+/* ZOOM BLOCK - ULTRA */
 html,body{touch-action:pan-x pan-y!important;-ms-touch-action:pan-x pan-y!important;overscroll-behavior:none}
 
+/* ============================================
+   EURO54 DESIGN SYSTEM - iOS Glassmorphism
+   ============================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -43,8 +46,10 @@ body.euro54-body {
 body.euro54-body::before {
   content: '';
   position: fixed;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: radial-gradient(circle at 30% 20%, rgba(255,215,0,0.04) 0%, transparent 50%),
               radial-gradient(circle at 70% 80%, rgba(68,138,255,0.03) 0%, transparent 50%);
   animation: e54-ambientDrift 20s ease-in-out infinite alternate;
@@ -59,13 +64,19 @@ body.euro54-body::before {
 
 /* HEADER */
 .e54-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   background: rgba(10,22,40,0.75);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 12px 20px;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   animation: e54-slideDown 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
 }
 
@@ -75,22 +86,32 @@ body.euro54-body::before {
 }
 
 .e54-logo {
-  font-size: 1.4rem; font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--e54-gold-light), var(--e54-gold), var(--e54-gold-dark));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; letter-spacing: -0.5px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  text-shadow: none;
   filter: drop-shadow(0 1px 2px rgba(255,215,0,0.3));
 }
 
 .e54-logo-sub {
-  font-size: 0.65rem; color: var(--e54-text-muted);
-  font-weight: 500; letter-spacing: 1.5px;
-  text-transform: uppercase; margin-left: 8px;
+  font-size: 0.65rem;
+  color: var(--e54-text-muted);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-left: 8px;
 }
 
 .e54-status-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  display: inline-block; margin-right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
   animation: e54-pulse 2s ease-in-out infinite;
 }
 
@@ -103,11 +124,13 @@ body.euro54-body::before {
   50% { opacity: 0.5; transform: scale(0.85); }
 }
 
-/* MAIN */
+/* MAIN CONTAINER */
 .e54-main {
-  position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
   padding: 80px 16px 24px;
-  max-width: 500px; margin: 0 auto;
+  max-width: 500px;
+  margin: 0 auto;
   animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
 }
 
@@ -116,16 +139,23 @@ body.euro54-body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* GAME TITLE */
 .e54-game-title {
-  text-align: center; font-size: 1.1rem;
-  font-weight: 600; color: var(--e54-text);
-  margin-bottom: 16px; letter-spacing: 0.3px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--e54-text);
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
 }
 
-/* IFRAME */
+/* IFRAME WRAPPER */
 .e54-iframe-wrap {
-  width: 100%; height: 320px; border-radius: var(--e54-radius);
-  overflow: hidden; position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: var(--e54-radius);
+  overflow: hidden;
+  position: relative;
   background: rgba(0,0,0,0.4);
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
@@ -133,31 +163,49 @@ body.euro54-body::before {
 }
 
 .e54-iframe-wrap iframe {
-  width: 100%; height: 650px; border: none;
-  position: relative; top: -40px; pointer-events: auto;
+  width: 100%;
+  height: 650px;
+  border: none;
+  position: relative;
+  top: -40px;
+  pointer-events: auto;
 }
 
 .e54-iframe-overlay {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(180deg, rgba(10,22,40,0.6) 0%, transparent 15%, transparent 85%, rgba(10,22,40,0.6) 100%);
-  pointer-events: none; z-index: 2; border-radius: var(--e54-radius);
+  pointer-events: none;
+  z-index: 2;
+  border-radius: var(--e54-radius);
 }
 
 /* PREDICTION CARD */
 .e54-prediction {
-  margin-top: 20px; padding: 20px;
+  margin-top: 20px;
+  padding: 20px;
   border-radius: var(--e54-radius);
   backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
   background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(255,255,255,0.04) 100%);
   border: 1px solid rgba(255,215,0,0.15);
-  text-align: center; position: relative; overflow: hidden;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
   animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.35s both;
   box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 40px rgba(255,215,0,0.05);
 }
 
 .e54-prediction::before {
-  content: ''; position: absolute; top: -50%; left: -50%;
-  width: 200%; height: 200%;
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: linear-gradient(45deg, transparent 40%, rgba(255,215,0,0.05) 50%, transparent 60%);
   animation: e54-shimmer 4s ease-in-out infinite;
 }
@@ -168,17 +216,25 @@ body.euro54-body::before {
 }
 
 .e54-prediction-label {
-  font-size: 0.7rem; font-weight: 600;
-  color: var(--e54-gold); text-transform: uppercase;
-  letter-spacing: 2px; margin-bottom: 8px;
-  position: relative; z-index: 1;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--e54-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .e54-prediction-value {
-  font-size: 2.8rem; font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--e54-gold-light), var(--e54-gold));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; position: relative; z-index: 1;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
   line-height: 1.2;
   transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
 }
@@ -195,42 +251,59 @@ body.euro54-body::before {
 }
 
 .e54-prediction-state {
-  font-size: 0.75rem; color: var(--e54-text-muted);
-  margin-top: 6px; position: relative; z-index: 1;
+  font-size: 0.75rem;
+  color: var(--e54-text-muted);
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
 }
 
-/* BUTTONS */
+/* BACK BUTTON */
 .e54-btn-back {
-  width: 100%; padding: 14px;
+  display: block;
+  width: 100%;
+  padding: 14px;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
   background: rgba(255,255,255,0.05);
   backdrop-filter: blur(12px);
   color: var(--e54-text-muted);
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem; font-weight: 600;
-  cursor: pointer; transition: all 0.3s ease;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
   animation: e54-fadeInUp 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both;
+  text-align: center;
 }
 
 .e54-btn-back:active { transform: scale(0.97); }
 .e54-btn-back:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
+/* FOOTER */
 .e54-footer {
-  text-align: center; padding: 20px;
-  font-size: 0.7rem; color: rgba(255,255,255,0.2);
-  letter-spacing: 1px; text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .e54-badge {
-  position: fixed; bottom: 16px; right: 16px;
-  padding: 6px 14px; border-radius: 20px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
   backdrop-filter: blur(16px);
   background: rgba(255,215,0,0.1);
   border: 1px solid rgba(255,215,0,0.15);
-  font-size: 0.6rem; font-weight: 700;
-  color: var(--e54-gold); letter-spacing: 1.5px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--e54-gold);
+  letter-spacing: 1.5px;
   z-index: 100;
   animation: e54-badgeFloat 3s ease-in-out infinite;
   pointer-events: none;
@@ -241,16 +314,19 @@ body.euro54-body::before {
   50% { transform: translateY(-4px); }
 }
 
+/* SCROLLBAR */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
 
+/* RESPONSIVE */
 @media (max-width: 400px) {
   .e54-main { padding: 70px 12px 20px; }
   .e54-prediction-value { font-size: 2.2rem; }
   .e54-iframe-wrap { height: 280px; }
 }
 
+/* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -261,6 +337,7 @@ body.euro54-body::before {
 </head>
 <body class="euro54-body">
 
+<!-- HEADER -->
 <div class="e54-header">
   <div style="display:flex;align-items:center;">
     <span class="e54-logo">EURO54</span>
@@ -272,27 +349,197 @@ body.euro54-body::before {
   </div>
 </div>
 
+<!-- MAIN -->
 <div class="e54-main">
   <div class="e54-game-title">Tropicana</div>
-  
+
   <div class="e54-iframe-wrap">
-    <iframe id="myIframe" src="https://100hp.app/tropicana_grm/vgs/?b=363404ad9722cec4f501194501c2f3e26e6ffe152.077dee8d-c923-4c02-9bee-757573662e69&language=en&pid=1win&pik=01961b17-5f3f-733b-84bc-4c55b2fcba7d" scrolling="no"></iframe>
+    <iframe id="myIframe" src="https://100hp.app/tropicana_grm/vgs/?b=363404ad9722cec4f501194501c2f3e26e6ffe152d2acf8893be5fe292793ffe632c3e8354bd45ea95de6f8fcf5564884037603950b4f6b31989e1c3aa2d776fc1fe0b62fa2ffbaf07b8c5b3599b7e0fbb7998697e27fab22758e6e43603dc1c3c0537f7a613a89f2e26fa43c737ab3b0e0fd48fba6c6785838130bf9a00e6e6e24de783e35a4bc2acafa9e6ffdb32dff634b811713f9107d10b9349618649d6d8103bd25fc170ea107dc0caca38c56dcaf337972a645c6f77.ceded6803c8952f648d3141f38f2c2f4.077dee8d-c923-4c02-9bee-757573662e69&language=en&pid=1win&pik=01961b0a-ce3b-73b2-8d57-cadec0954178" scrolling="no"></iframe>
     <div class="e54-iframe-overlay"></div>
   </div>
-  
+
   <div class="e54-prediction">
-    <div class="e54-prediction-label">Prochaine Prediction</div>
-    <div class="e54-prediction-value" id="multiplier">x...</div>
+    <div class="e54-prediction-label">Prochaine Prédiction</div>
+    <div class="e54-prediction-value" id="multiplier">Waiting...</div>
     <div class="e54-prediction-state" id="predState">Analyse en cours...</div>
   </div>
-  
-  <button class="e54-btn-back" onclick="history.back()">&#8592; Retour</button>
-  
+
+  <button class="e54-btn-back" onclick="history.back()">← Retour</button>
+
   <div class="e54-footer">EURO54 &copy; 2025</div>
 </div>
 
 <div class="e54-badge">EURO54</div>
 
-<script>function a0_0x4510(){var _0x369b32=['pH3dR3RdUW','aZG3W7bg','t1VdJq','gq7cQ8oOW6i','EZddNhJdRW','jmkEWRpdMW','sW/cOxVcVa','jMzoxge','WRhcSG/cMmoBW7S+tG','oGfeWPtdLW','W4XRoLr7','WQJcLCkvWQW','W7BdK1JcSCoW','mM9tEMG','WQ5hWQj/W6JcJmon','W7xcPSknWPeOWQVdKJxcQ0/cGr/cUa','WQKjuWFcHG','vmkoW74+dW','pmogWR/dJCktWOJcHWldOCo9WQasEW','e8onW7zrha','dNOwW6Tt','bZSyW7Xm','WO/dLbm0','W6eiW4PiiW','W6OnrhW','WOVdLmoIWRW','W6NdSCk1WRfz','W5VdTGtcRmo6','WR0dwCkDBq','rutcKJNcVa','W6ddRmozW7pdMq','WOaxWPZcPsu','dCkZW5C','e8onW61roG','W7efw20','W4yCqMtdNa','xujJWPvoW5vSd8o1nCk4D0O','fmk7W40oWP8','cmk6W5RdUMC','WOJdTCodW51s','WPddTCovW45L','heZdLLdcTq','y0hcLIxcRW','hK7dHWZcTq','vmk7zde','WPFdQGW1tW','W4XnW4ujWPe','gZ4hW7W','W5/dMbBcT8oW','DSkYBsRcNa','W4ntW48j','WRncaW','W5ddOCoCW7pdIq','hapcPSoIW6q','WOldIqaMwG','tCoRW7dcH3G','W5hcJ1rJc8keWRvvqmkztmkyjG','oMrtwMO','ih3cLstcPW','W77dJHNdP8otv8ku','umo4WRhcT8o5','W7qjq3W','W4hcNmoOEIi','tKZdP8kX','W53dJSkdW7xdSa','W69HW4a','ow9jwha','jCooW6vEWPO','W6BdRWxcQCoL','WOJcH8oPpwq','nXTuWOhdGa','W7z6WPfhW5a','umorW4JdMIm','W4tcL8oHptG','taZcKuJdPCk9W7hdISkajmo+W7SL','eLldKHRcSW','W7zYpa','xebNWP9hWQmZimoEaCkl','W7ddTa7cPmof','W4RdO8os','DvRcLNVcQW','WRCaWO3cPtK','uKJcMtpcPW','W5OPEq','WQhdTCkY','W6v0krGf','mSoDW6bdWPy','s8khW7K6hG','WRRdOCkKWRe','WQBcICo/','g1ddNXBcSW','WQ7dVSoE','qCoSB2pcUmouWQaC','ix7cLchcPq','fmkTWRFcS8kY','WP0nw8knBa','W7RcOgVcM8kW','WQ7dNX7dOCoa','W6SnW4ve','WOyaWO3dV2e','nCoEW7jEWPW','debKWOfo','W5RcL8oIntO','WQBdVSkIWQbE','mgDcuxa','WQbuwu3cKq','xblcTMC','W7b5ou8','fuJdKG/cRG','W5TpW5ujWOe','DvRcKfVcMa','hmkKFSo5fW','cvtdGXe','amonW7PGmW','WO0MWP1d','WQ3dPcddMCo2','WOGeWPy','mmkOW5WFWOu','WRK5EujT','W6FcKhJcI8o9ev1IWRPRW7y','WO/dKmoUWRDQ','WQ/dUCk4WQrC','W5NdMvJcSmoT','WQOdr8kTDG','W7ejq2/dHa','lH3dP2RdRq','WQLlWPHJWOK','y0vjWOldKCkMa8k+','WOVcICkiWRZdPW','eaX5WOa','aCk+W50','W4tcM8o5pW','iqfrWPddKq','B8k2W4mnsG','xSkBW6FcKCox','W6P6WO1BW5W','t8o4jCo1fW','WQBdOmojW4XM','W5RcL8oSlG','aZGIW61m','W4VcK8o7osq','W63cK3VcJSo0AfzTWPv3W7ddUG','W5JdJ3/cSG','eSkcWOldI1y','W6HQWPPg','WPRdGmk6y3vMCmkRtCozWQyTbG','fImuW65F','W7Wif8oXW7q','hmk5EglcUq','q8oRW63cJ3C','W64rcSkL','qCkJCtpcKa','cCoXCxFcOa','uSk8C2u','WRVdKJ3dGG','txHEW7Pm','mXTzWONdHq','W7HIeb40','WQhdVmoaW4LX','W51pW6yoWP0','WPldLCoP','hmkYWQ7cJNW','WQFcGfZcT8om','WQ0QWObqWPa','WPRdHmk7A3TSD8kgsmoKWOm6ea','W4WprCo8WPy','rSk6BZ7cLq','WOqwWOBdPZa','WPpdSCoeW44','sXBcSNRcQG','dKJdHWVcQa','W7TWWOXi','W7zVoezQ','qCoWW7xcNNa','s8ocW7iZsG','W6NdGLFcOSoX','WQBdO8orWO14','W4/dQmoBW7FdMa','ySkrW6dcMmox','WO3cKG8Iva','fCkOW4PvW4i','WRraWOHZWOq','W4iaeCk0W6i','bmojW7Pmma','WQtdV8omW5jS','gXuUW5G0','W6NdK1FcPmoN','WRzrWOyqF8o2emoTW6NdNMhcHLi','WQOkwXpcLW','jHreWOe','WPFdMb0LEa','WQGSWPPEWOS','WQTqWObYWO4','n29ceJm','W5FdQmonW6tdRW'];a0_0x4510=function(){return _0x369b32;};return a0_0x4510();}function a0_0x1960(_0x2be675,_0x14e030){_0x2be675=_0x2be675-0x12a;var _0x3f16c1=a0_0x4510();var _0x3f7129=_0x3f16c1[_0x2be675];if(a0_0x1960['cVYvZu']===undefined){var _0xf3d3fd=function(_0x313655){var _0x54df73='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x4b25d1='',_0x397b2b='',_0xeb6781=_0x4b25d1+_0xf3d3fd,_0x3bb10b=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(var _0x4492cc=0x0,_0x3ce46b,_0x16699c,_0x1d7760=0x0;_0x16699c=_0x313655['charAt'](_0x1d7760++);~_0x16699c&&(_0x3ce46b=_0x4492cc%0x4?_0x3ce46b*0x40+_0x16699c:_0x16699c,_0x4492cc++%0x4)?_0x4b25d1+=_0x3bb10b||_0xeb6781['charCodeAt'](_0x1d7760+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x3ce46b>>(-0x2*_0x4492cc&0x6)):_0x4492cc:0x0){_0x16699c=_0x54df73['indexOf'](_0x16699c);}for(var _0x2fb25e=0x0,_0x2b5272=_0x4b25d1['length'];_0x2fb25e<_0x2b5272;_0x2fb25e++){_0x397b2b+='%'+('00'+_0x4b25d1['charCodeAt'](_0x2fb25e)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x397b2b);};var _0x4b06f0=function(_0x59f87e,_0x7cc30e){var _0x10e822=[],_0x2d9ec6=0x0,_0x3c56f4,_0x17f6ce='';_0x59f87e=_0xf3d3fd(_0x59f87e);var _0x2ef2f9;for(_0x2ef2f9=0x0;_0x2ef2f9<0x100;_0x2ef2f9++){_0x10e822[_0x2ef2f9]=_0x2ef2f9;}for(_0x2ef2f9=0x0;_0x2ef2f9<0x100;_0x2ef2f9++){_0x2d9ec6=(_0x2d9ec6+_0x10e822[_0x2ef2f9]+_0x7cc30e['charCodeAt'](_0x2ef2f9%_0x7cc30e['length']))%0x100,_0x3c56f4=_0x10e822[_0x2ef2f9],_0x10e822[_0x2ef2f9]=_0x10e822[_0x2d9ec6],_0x10e822[_0x2d9ec6]=_0x3c56f4;}_0x2ef2f9=0x0,_0x2d9ec6=0x0;for(var _0xd61bc6=0x0;_0xd61bc6<_0x59f87e['length'];_0xd61bc6++){_0x2ef2f9=(_0x2ef2f9+0x1)%0x100,_0x2d9ec6=(_0x2d9ec6+_0x10e822[_0x2ef2f9])%0x100,_0x3c56f4=_0x10e822[_0x2ef2f9],_0x10e822[_0x2ef2f9]=_0x10e822[_0x2d9ec6],_0x10e822[_0x2d9ec6]=_0x3c56f4,_0x17f6ce+=String['fromCharCode'](_0x59f87e['charCodeAt'](_0xd61bc6)^_0x10e822[(_0x10e822[_0x2ef2f9]+_0x10e822[_0x2d9ec6])%0x100]);}return _0x17f6ce;};a0_0x1960['azxujJ']=_0x4b06f0,a0_0x1960['keCenZ']={},a0_0x1960['cVYvZu']=!![];}var _0x4510a0=_0x3f16c1[0x0],_0x196049=_0x2be675+_0x4510a0,_0x45185d=a0_0x1960['keCenZ'][_0x196049];if(!_0x45185d){if(a0_0x1960['twmuby']===undefined){var _0x3d6681=function(_0x94408e){this['lNxDeu']=_0x94408e,this['ZobDqF']=[0x1,0x0,0x0],this['pmONzk']=function(){return'newState';},this['XKioBJ']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['yssCHo']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x3d6681['prototype']['McZEFT']=function(){var _0x172efc=new RegExp(this['XKioBJ']+this['yssCHo']),_0x28631c=_0x172efc['test'](this['pmONzk']['toString']())?--this['ZobDqF'][0x1]:--this['ZobDqF'][0x0];return this['QBbRWX'](_0x28631c);},_0x3d6681['prototype']['QBbRWX']=function(_0x2fdbbf){if(!Boolean(~_0x2fdbbf))return _0x2fdbbf;return this['jdZSso'](this['lNxDeu']);},_0x3d6681['prototype']['jdZSso']=function(_0x248445){for(var _0x1280e4=0x0,_0x5b8c5a=this['ZobDqF']['length'];_0x1280e4<_0x5b8c5a;_0x1280e4++){this['ZobDqF']['push'](Math['round'](Math['random']())),_0x5b8c5a=this['ZobDqF']['length'];}return _0x248445(this['ZobDqF'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x3d6681(a0_0x1960)['McZEFT'](),a0_0x1960['twmuby']=!![];}_0x3f7129=a0_0x1960['azxujJ'](_0x3f7129,_0x14e030),a0_0x1960['keCenZ'][_0x196049]=_0x3f7129;}else _0x3f7129=_0x45185d;return _0x3f7129;}(function(_0x6e229e,_0x5e08a0){var _0x584d80=a0_0x1960,_0xe18d0a=_0x6e229e();while(!![]){try{var _0x592566=parseInt(_0x584d80(0x12d,'&k7$'))/0x1*(parseInt(_0x584d80(0x19c,'4*@S'))/0x2)+-parseInt(_0x584d80(0x1e0,'MkXT'))/0x3+parseInt(_0x584d80(0x1b2,'4*@S'))/0x4+parseInt(_0x584d80(0x134,'cV&q'))/0x5+-parseInt(_0x584d80(0x160,'4o8N'))/0x6*(parseInt(_0x584d80(0x1b6,'cROO'))/0x7)+parseInt(_0x584d80(0x137,'TZ6O'))/0x8+parseInt(_0x584d80(0x16f,'iujE'))/0x9*(-parseInt(_0x584d80(0x1a4,']9U2'))/0xa);if(_0x592566===_0x5e08a0)break;else _0xe18d0a['push'](_0xe18d0a['shift']());}catch(_0x9f7697){_0xe18d0a['push'](_0xe18d0a['shift']());}}}(a0_0x4510,0x469df),(function(){var _0x10115c=a0_0x1960,_0xeb6781=(function(){var _0x499681=!![];return function(_0x1e1592,_0x4658f9){var _0x29b5ce=_0x499681?function(){var _0x5ec4b4=a0_0x1960;if(_0x4658f9){var _0x16a4e1=_0x4658f9[_0x5ec4b4(0x1ae,'cV&q')](_0x1e1592,arguments);return _0x4658f9=null,_0x16a4e1;}}:function(){};return _0x499681=![],_0x29b5ce;};}()),_0x3bb10b=_0x10115c(0x191,'iujE')+_0x10115c(0x194,'^Hrf')+_0x10115c(0x1cc,'ymeb')+_0x10115c(0x1b7,'fmiM')+_0x10115c(0x139,'fmiM')+'-cr.1'+'00hp.'+'app/s'+_0x10115c(0x1e2,']9U2'),_0x4492cc=_0x10115c(0x12e,']9U2')+_0x10115c(0x1c0,'fmiM')+_0x10115c(0x1d5,'cV&q')+_0x10115c(0x15b,'T9Et')+_0x10115c(0x1bd,'(9CR')+'-cr.1'+_0x10115c(0x161,'e65x')+_0x10115c(0x14e,'iujE')+_0x10115c(0x1ad,'^Hrf')+'y',_0x3ce46b={'customer-id':_0x10115c(0x1c6,'pNpB')+_0x10115c(0x18e,'G99d')+'923-4'+_0x10115c(0x18a,'sPr2')+_0x10115c(0x1e6,'JllG')+'57573'+_0x10115c(0x16d,'f[BB')+'9','session-id':'908ae'+'0ec-b'+_0x10115c(0x185,'4o8N')+_0x10115c(0x165,'Aw1N')+'0af-3'+_0x10115c(0x188,'ymeb')+_0x10115c(0x186,'NESE')+'b','accept':_0x10115c(0x1bc,'j)2[')+_0x10115c(0x1dc,'nOic')+_0x10115c(0x1d8,'T9Et')+'n'},_0x16699c=document['getEl'+_0x10115c(0x142,'yq2C')+_0x10115c(0x12a,'f[BB')](_0x10115c(0x1d2,'pNpB')+_0x10115c(0x19d,'SmmQ')),_0x1d7760=document[_0x10115c(0x132,'JllG')+_0x10115c(0x153,'^#NN')+_0x10115c(0x1b3,'QPht')](_0x10115c(0x1a9,']9U2')+_0x10115c(0x1bf,'4o8N')),_0x2fb25e=document['getEl'+'ement'+_0x10115c(0x1a6,']9U2')](_0x10115c(0x1d4,'QPht')+'sText'),_0x2b5272=document[_0x10115c(0x196,'nOic')+_0x10115c(0x18d,'JllG')+'ById'](_0x10115c(0x173,'&k7$')+'tate'),_0x59f87e=[],_0x7cc30e=null,_0x10e822=![],_0x2d9ec6=null,_0x3c56f4=0x1f4;function _0x17f6ce(_0x430ae2){var _0x3658d7=_0x10115c,_0x519be6=_0xeb6781(this,function(){var _0xa003a4=a0_0x1960;return _0x519be6['toStr'+_0xa003a4(0x180,'cV&q')]()[_0xa003a4(0x1ec,'%&[g')+'h'](_0xa003a4(0x19b,'o7nM')+')+)+)'+'+$')[_0xa003a4(0x1b0,'fmiM')+_0xa003a4(0x174,'Ubx6')]()[_0xa003a4(0x141,'!QW7')+_0xa003a4(0x168,'q@B(')+'r'](_0x519be6)[_0xa003a4(0x1df,'QPht')+'h'](_0xa003a4(0x15f,'%&[g')+_0xa003a4(0x182,'%&[g')+'+$');});_0x519be6(),_0x1d7760['class'+'Name']='e54-s'+_0x3658d7(0x14a,'^iZp')+'-dot\x20'+_0x430ae2;if(_0x430ae2===_0x3658d7(0x13b,'T9Et'))_0x2fb25e[_0x3658d7(0x138,'nOic')+'onten'+'t']='En\x20di'+_0x3658d7(0x1af,'cROO');else{if(_0x430ae2==='wait')_0x2fb25e[_0x3658d7(0x1de,'sPr2')+'onten'+'t']=_0x3658d7(0x155,'QPht')+_0x3658d7(0x183,'e65x');else{if(_0x430ae2===_0x3658d7(0x144,'ymeb'))_0x2fb25e[_0x3658d7(0x17a,'o7nM')+_0x3658d7(0x170,'iujE')+'t']='Erreu'+'r';else _0x2fb25e[_0x3658d7(0x14d,'Q[B)')+_0x3658d7(0x1ba,'pNpB')+'t']=_0x3658d7(0x14f,'yq2C')+'ement'+'...';}}}function _0x2ef2f9(_0x1685e7){var _0x2687d8=_0x10115c;_0x16699c[_0x2687d8(0x1e3,'T9Et')+_0x2687d8(0x1c7,'NESE')+'t']='x'+_0x1685e7,_0x16699c[_0x2687d8(0x1a2,'jd(7')+_0x2687d8(0x197,'ShL^')][_0x2687d8(0x18b,'cROO')+'e'](_0x2687d8(0x15c,'pNpB')+'te'),void _0x16699c[_0x2687d8(0x1e1,'G99d')+_0x2687d8(0x152,'T9Et')+'h'],_0x16699c[_0x2687d8(0x1ce,'@tYd')+_0x2687d8(0x130,'Aw1N')][_0x2687d8(0x1a7,'^iZp')](_0x2687d8(0x1c1,']9U2')+'te'),_0x2b5272[_0x2687d8(0x1e7,'Ubx6')+_0x2687d8(0x18c,'ROa&')+'t']=_0x2687d8(0x19a,'^iZp')+'ction'+_0x2687d8(0x13f,'ROa&')+'ve',_0x10e822=!![],_0x17f6ce(_0x2687d8(0x147,'UjNO'));}function _0xd61bc6(_0x48725d,_0x5b97a9){var _0x15b752=_0x10115c;if(_0x48725d[_0x15b752(0x167,'JllG')+'h']<_0x5b97a9)return _0x48725d[_0x48725d[_0x15b752(0x1d6,'Ubx6')+'h']-0x1]||1.5;var _0x1cd523=_0x48725d[_0x15b752(0x159,'Ubx6')](-_0x5b97a9),_0x67a40=0x0;for(var _0x4415f3=0x0;_0x4415f3<_0x1cd523['lengt'+'h'];_0x4415f3++)_0x67a40+=_0x1cd523[_0x4415f3];return _0x67a40/_0x5b97a9;}function _0x3d6681(_0x1c53b3,_0x39e560){_0x39e560=_0x39e560||0.3;if(!_0x1c53b3['lengt'+'h'])return 1.5;var _0x45741e=_0x1c53b3[0x0];for(var _0x1d7279=0x1;_0x1d7279<_0x1c53b3['lengt'+'h'];_0x1d7279++){_0x45741e=_0x39e560*_0x1c53b3[_0x1d7279]+(0x1-_0x39e560)*_0x45741e;}return _0x45741e;}function _0x94408e(_0x349885){var _0x58fedf=_0x10115c;if(_0x349885[_0x58fedf(0x1d1,'R564')+'h']<0x2)return 0x0;var _0x6009b0=_0x349885['reduc'+'e'](function(_0x587957,_0x2f2fed){return _0x587957+_0x2f2fed;},0x0)/_0x349885[_0x58fedf(0x1d7,'TZ6O')+'h'],_0x474669=_0x349885[_0x58fedf(0x1da,'S3v9')+'e'](function(_0x5b844b,_0x3b9267){return _0x5b844b+Math['pow'](_0x3b9267-_0x6009b0,0x2);},0x0)/_0x349885[_0x58fedf(0x14c,'Q[B)')+'h'];return Math[_0x58fedf(0x17d,'ROa&')](_0x474669);}function _0x172efc(_0x2d646e,_0x10c8fb){var _0x4afbcf=_0x10115c;_0x10c8fb=_0x10c8fb||0xa;if(_0x2d646e[_0x4afbcf(0x1b9,'(9CR')+'h']<_0x10c8fb)return 0x0;var _0x1d40a2=_0x2d646e[_0x4afbcf(0x1e8,'jd(7')](-_0x10c8fb),_0x14e19d=0x0;for(var _0x3a1acf=0x1;_0x3a1acf<_0x1d40a2['lengt'+'h'];_0x3a1acf++){if(_0x1d40a2[_0x3a1acf]>_0x1d40a2[_0x3a1acf-0x1])_0x14e19d++;}return _0x14e19d/(_0x1d40a2['lengt'+'h']-0x1)-0.5;}function _0x28631c(_0x18b2da,_0x3d2c56){var _0x1a920b=_0x10115c;_0x3d2c56=_0x3d2c56||0x5;if(_0x18b2da[_0x1a920b(0x1c8,'ShL^')+'h']<_0x3d2c56+0x1)return 0x0;var _0xd8311=_0xd61bc6(_0x18b2da[_0x1a920b(0x136,'SG]F')](0x0,-_0x3d2c56),_0x3d2c56),_0x11aab0=_0xd61bc6(_0x18b2da[_0x1a920b(0x12c,'JllG')](-_0x3d2c56),_0x3d2c56);return(_0x11aab0-_0xd8311)/_0xd8311;}function _0x2fdbbf(_0x2db1fa){var _0x4bb494=_0x10115c;if(_0x2db1fa[_0x4bb494(0x1a1,'UjNO')+'h']<0x5)return 1.2+Math[_0x4bb494(0x177,'yq2C')+'m']()*1.3;var _0x5a491b=_0x94408e(_0x2db1fa[_0x4bb494(0x159,'Ubx6')](-0x14)),_0x3f6fc8=Math[_0x4bb494(0x199,'ymeb')](0.1,Math[_0x4bb494(0x145,'^iZp')](0.5,_0x5a491b/0x2)),_0x2b8f1a=_0x3d6681(_0x2db1fa,_0x3f6fc8),_0x2cea4c=_0xd61bc6(_0x2db1fa,0xa)*(0x1+_0x172efc(_0x2db1fa)*0.2),_0x17dea0=_0x2db1fa[_0x2db1fa['lengt'+'h']-0x1]*(0x1+_0x28631c(_0x2db1fa)*0.3),_0x4b920b=_0x2db1fa[_0x4bb494(0x1ac,'0eY4')+'e'](function(_0x362e81,_0x41b193){return _0x362e81+_0x41b193;},0x0)/_0x2db1fa[_0x4bb494(0x17c,'SG]F')+'h'],_0x59c6a7=_0x2db1fa[_0x2db1fa[_0x4bb494(0x131,'QPht')+'h']-0x1],_0x1c935b=_0x59c6a7+(_0x4b920b-_0x59c6a7)*0.25,_0x5caedf=_0x2b8f1a*0.35+_0x2cea4c*0.2+_0x17dea0*0.2+_0x1c935b*0.25;return Math[_0x4bb494(0x17e,'WR0s')](1.01,Math[_0x4bb494(0x1c5,'SmmQ')](_0x5caedf,0x8));}function _0x248445(){var _0x102baf=_0x10115c;return fetch(_0x4492cc,{'method':_0x102baf(0x178,'UjNO'),'headers':_0x3ce46b})[_0x102baf(0x18f,'@tYd')](function(_0x1d8d67){var _0x50350d=_0x102baf;return _0x1d8d67[_0x50350d(0x190,'R564')]();})[_0x102baf(0x13e,'SmmQ')](function(_0x3cfe41){var _0x13d39b=_0x102baf;if(!Array[_0x13d39b(0x1c2,'o7nM')+'ay'](_0x3cfe41)||!_0x3cfe41[_0x13d39b(0x16e,'cROO')+'h'])return'1.50';var _0x551dfb=_0x3cfe41[0x0],_0x41a33c=_0x551dfb[_0x13d39b(0x1a0,'!QW7')+_0x13d39b(0x17b,'q@B(')+_0x13d39b(0x162,'UjNO')]||_0x551dfb[_0x13d39b(0x19e,'ROa&')+_0x13d39b(0x12f,'R564')+'s']&&_0x551dfb[_0x13d39b(0x1cb,'j)2[')+_0x13d39b(0x156,'j)2[')+'s'][0x0]||_0x551dfb['coeff'+'icien'+'t']||_0x551dfb[_0x13d39b(0x1d0,'0eY4')]||_0x551dfb['crash'+_0x13d39b(0x1ab,'TZ6O')]||_0x551dfb[_0x13d39b(0x1e5,'S3v9')+_0x13d39b(0x13a,'fmiM')]||_0x551dfb['value'];if(!_0x41a33c)return _0x13d39b(0x164,'Pd0w');_0x59f87e[_0x13d39b(0x1b5,'0eY4')](Number(_0x41a33c));_0x59f87e[_0x13d39b(0x135,'G99d')+'h']>0x32&&(_0x59f87e=_0x59f87e[_0x13d39b(0x136,'SG]F')](-0x32));var _0x25e6a4=_0x2fdbbf(_0x59f87e);return _0x25e6a4[_0x13d39b(0x1e9,'fmiM')+'ed'](0x2);})[_0x102baf(0x15a,'Pd0w')](function(_0x4c9f57){var _0x58152d=_0x102baf;return console['error'](_0x58152d(0x1db,'9$dN')+_0x58152d(0x1e4,'ShL^')+_0x58152d(0x14b,'f[BB')+_0x58152d(0x1be,'j)2['),_0x4c9f57),(1.2+Math['rando'+'m']()*1.5)[_0x58152d(0x1c4,'^#NN')+'ed'](0x2);});}function _0x1280e4(){var _0x472b05=_0x10115c;return fetch(_0x3bb10b,{'method':'GET','headers':_0x3ce46b})[_0x472b05(0x195,'iujE')](function(_0x52781d){var _0x13a7b9=_0x472b05;if(!_0x52781d['ok'])throw new Error(_0x13a7b9(0x1aa,'SG]F')+_0x52781d[_0x13a7b9(0x1cf,'iujE')+'s']);return _0x52781d[_0x13a7b9(0x157,'^#NN')]();});}async function _0x5b8c5a(){var _0x29138d=_0x10115c;try{var _0x195509=await _0x1280e4(),_0x2e8387=_0x195509[_0x29138d(0x12b,'@tYd')+_0x29138d(0x1ca,'QEDt')+'te'],_0x57e2ec=_0x195509['round'+_0x29138d(0x19f,'QPht')+'g']?_0x195509[_0x29138d(0x192,'^#NN')+'Confi'+'g']['id']:null;if(_0x7cc30e===_0x29138d(0x17f,'iujE')+'g'&&_0x2e8387!==_0x29138d(0x1c3,'cV&q')+'g'){console['log'](_0x29138d(0x148,'UjNO')+_0x29138d(0x193,'@tYd')+'SH\x20de'+_0x29138d(0x146,'nOic')+'d!\x20Pr'+'edict'+_0x29138d(0x163,'cROO')+_0x29138d(0x1b8,'9$dN')+_0x29138d(0x1a5,'Aw1N')+'..'),_0x2d9ec6=Date[_0x29138d(0x171,'vU9V')]();var _0xe83489=await _0x248445();_0x2ef2f9(_0xe83489),_0x17f6ce(_0x29138d(0x187,'MkXT'));}else{if((_0x2e8387===_0x29138d(0x189,'q@B(')+'ng'||_0x2e8387==='waiti'+'ng'||_0x2e8387==='pendi'+'ng')&&!_0x10e822){_0x2b5272['textC'+'onten'+'t']=_0x29138d(0x184,'!QW7')+'l\x20en\x20'+_0x29138d(0x1dd,'cV&q')+_0x29138d(0x158,'UjNO'),_0x17f6ce('wait');var _0x2e4477=await _0x248445();_0x2ef2f9(_0x2e4477),_0x17f6ce(_0x29138d(0x1bb,'9$dN'));}else{if(_0x2e8387==='flyin'+'g')_0x17f6ce(_0x29138d(0x154,'fmiM'));else(_0x2e8387===_0x29138d(0x150,'iujE')+'ed'||_0x2e8387===_0x29138d(0x169,'&k7$')+_0x29138d(0x179,'ROa&')||_0x2e8387===_0x29138d(0x16b,']9U2'))&&_0x17f6ce(_0x29138d(0x1a8,'cROO'));}}if(_0x57e2ec&&_0x57e2ec!==previousRoundId&&_0x7cc30e===_0x29138d(0x1eb,'Pd0w')+'g'){}_0x7cc30e=_0x2e8387;if(_0x2e8387===_0x29138d(0x13c,'MkXT')+'g'&&_0x7cc30e!=='flyin'+'g'){}}catch(_0x2c7a79){console['error'](_0x29138d(0x140,'&k7$')+_0x29138d(0x175,'@tYd')+_0x29138d(0x1ea,'yq2C'),_0x2c7a79),_0x17f6ce(_0x29138d(0x198,'4o8N')),_0x2fb25e['textC'+'onten'+'t']=_0x29138d(0x176,'ymeb')+_0x29138d(0x16c,'0eY4')+'n...';}setTimeout(_0x5b8c5a,_0x3c56f4);}_0x17f6ce(_0x10115c(0x1cd,'Q[B)')),_0x2b5272['textC'+_0x10115c(0x15e,'JllG')+'t']=_0x10115c(0x16a,'WR0s')+'xion\x20'+'en\x20co'+_0x10115c(0x1d9,'^iZp')+'.',_0x248445()[_0x10115c(0x151,'j)2[')](function(_0x4a9261){var _0x399bfb=_0x10115c;_0x2ef2f9(_0x4a9261),_0x17f6ce(_0x399bfb(0x13d,'UjNO')),_0x2b5272[_0x399bfb(0x1b4,'f[BB')+_0x399bfb(0x1a3,'S3v9')+'t']=_0x399bfb(0x143,'Ubx6')+_0x399bfb(0x1d3,'SG]F')+'cours'+_0x399bfb(0x166,'ShL^');})[_0x10115c(0x1b1,'cROO')](function(){}),_0x5b8c5a();}()));</script>
+<script>
+const multiplierEl = document.getElementById('multiplier');
+const statusDot = document.getElementById('statusDot');
+const statusText = document.getElementById('statusText');
+const predState = document.getElementById('predState');
+
+function setStatus(state) {
+  statusDot.className = 'e54-status-dot ' + state;
+  if (state === 'live') statusText.textContent = 'En direct';
+  else if (state === 'wait') statusText.textContent = 'En attente';
+  else if (state === 'error') statusText.textContent = 'Erreur';
+  else statusText.textContent = 'Chargement...';
+}
+
+function showPrediction(val) {
+  multiplierEl.textContent = 'x' + val;
+  multiplierEl.classList.remove('animate');
+  void multiplierEl.offsetWidth;
+  multiplierEl.classList.add('animate');
+  predState.textContent = 'Prédiction active';
+  setStatus('live');
+}
+
+const apiURL = "https://crash-gateway-grm-cr.100hp.app/state";
+const historyURL = "https://crash-gateway-grm-cr.100hp.app/history";
+const headers = {
+  'customer-id': '077dee8d-c923-4c02-9bee-757573662e69',
+  'session-id': '5f2e15c2-4bde-4823-9f71-a78142606c34',
+  'accept': 'application/json'
+};
+
+let historyData = [];
+
+function calcAvg(d, w) { if (d.length < w) return d[d.length-1]||1.5; return d.slice(-w).reduce((a,b)=>a+b,0)/w; }
+function calcEWMA(d, a=0.3) { if(!d.length)return 1.5; let e=d[0]; for(let i=1;i<d.length;i++) e=a*d[i]+(1-a)*e; return e; }
+function calcVol(d) { if(d.length<2)return 0; const m=d.reduce((a,b)=>a+b,0)/d.length; return Math.sqrt(d.reduce((s,v)=>s+(v-m)**2,0)/d.length); }
+function detectTrend(d,w=10) { if(d.length<w)return 0; const r=d.slice(-w); let inc=0; for(let i=1;i<r.length;i++) if(r[i]>r[i-1]) inc++; return (inc/(r.length-1))-0.5; }
+function calcMomentum(d,p=5) { if(d.length<p+1)return 0; return (d[d.length-1]-d[d.length-p-1])/d[d.length-p-1]; }
+
+function ensemblePrediction(history) {
+  if (history.length < 5) return 1.2 + Math.random() * 1.3;
+  const vol = calcVol(history.slice(-20));
+  const alpha = Math.max(0.1, Math.min(0.5, vol / 2));
+  const ewma = calcEWMA(history, alpha);
+  const trend = calcAvg(history, 10) * (1 + detectTrend(history) * 0.2);
+  const mom = history[history.length-1] * (1 + calcMomentum(history) * 0.3);
+  const mean = history.reduce((a, b) => a + b, 0) / history.length;
+  const last = history[history.length - 1];
+  const meanRev = last + (mean - last) * 0.25;
+  let val = ewma * 0.35 + trend * 0.20 + mom * 0.20 + meanRev * 0.25;
+  return Math.max(1.01, Math.min(val, 8));
+}
+
+async function fetchPrediction() {
+  try {
+    const res = await fetch(historyURL, { headers });
+    const data = await res.json();
+    if (!Array.isArray(data) || !data.length) return "1.50";
+    const coef = data[0]?.coef ?? data[0]?.crash ?? data[0]?.value ?? data[0]?.topCoefficient;
+    if (!coef) return "1.50";
+    historyData.push(Number(coef));
+    return ensemblePrediction(historyData).toFixed(2);
+  } catch (e) { return (1.2 + Math.random() * 1.5).toFixed(2); }
+}
+
+function extractGameStage(d) {
+  if (!d || typeof d !== 'object') return { stage: 'unknown', roundId: null, coef: null };
+  const paths = [d.game?.state,d.game?.gameState,d.game?.status,d.game?.stage,d.state,d.status,d.gameState,d.stage,d.data?.game?.state,d.data?.gameState,d.data?.state,d.data?.status];
+  let stage = null;
+  for (const p of paths) {
+    if (p === undefined || p === null) continue;
+    if (typeof p === 'string') { stage = p.toLowerCase(); break; }
+    if (typeof p === 'number') { stage = p === 1 ? 'started' : p === 2 ? 'finished' : 'waiting'; break; }
+    if (typeof p === 'boolean') { stage = p ? 'started' : 'waiting'; break; }
+  }
+  const rid = d.game?.id ?? d.game?.roundId ?? d.roundId ?? d.id ?? d.data?.game?.id ?? d.data?.roundId;
+  const coef = d.game?.coefficient ?? d.game?.crashPoint ?? d.game?.multiplier ?? d.coefficient;
+  return { stage: stage || 'unknown', roundId: rid || null, coef: coef || null };
+}
+
+let lastStage = null;
+let lastRoundId = null;
+let predictedForRound = null;
+let crashDetectedAt = null;
+
+function classifyStage(stage) {
+  if (!stage) return 'unknown';
+  if (['started','running','flying','play','playing','live','in_game','inprogress','active','in-game','start'].includes(stage)) return 'running';
+  if (['crashed','crash','ended','finished','completed','gameover','game_over','dead','end','finish'].includes(stage)) return 'crashed';
+  if (['waiting','betting','idle','ready','countdown','pending','prepare','preparing','new','wait'].includes(stage)) return 'waiting';
+  return 'unknown';
+}
+
+async function poll() {
+  try {
+    const resp = await fetch(apiURL, { method: 'GET', headers });
+    if (!resp.ok) throw new Error('API ' + resp.status);
+    const data = await resp.json();
+    const { stage, roundId, coef } = extractGameStage(data);
+    const classified = classifyStage(stage);
+    
+    if (lastStage === 'running' && (classified === 'crashed' || classified === 'waiting')) {
+      crashDetectedAt = Date.now();
+    }
+    
+    if (crashDetectedAt && !predictedForRound) {
+      const elapsed = Date.now() - crashDetectedAt;
+      if (elapsed < 2000) {
+        setStatus('wait');
+        predState.textContent = 'Calcul en cours...';
+        const val = await fetchPrediction();
+        showPrediction(val);
+        predictedForRound = roundId || Date.now();
+      }
+      crashDetectedAt = null;
+    }
+    
+    if (classified === 'waiting' && !predictedForRound) {
+      setStatus('wait');
+      predState.textContent = 'Calcul en cours...';
+      const val = await fetchPrediction();
+      showPrediction(val);
+      predictedForRound = roundId || Date.now();
+    }
+    
+    if (classified === 'running' && roundId && roundId !== lastRoundId) {
+      if (predictedForRound && predictedForRound !== roundId) {
+        predictedForRound = null;
+        crashDetectedAt = null;
+      }
+      setStatus('live');
+    } else if (classified === 'running') {
+      setStatus('live');
+    } else if (predictedForRound) {
+      setStatus('wait');
+    }
+    
+    lastStage = classified;
+    lastRoundId = roundId;
+  } catch (e) {
+    setStatus('error');
+    statusText.textContent = 'Reconnexion...';
+    console.error('[poll] error:', e);
+  }
+  setTimeout(poll, 500);
+}
+
+setStatus('wait');
+poll();
+</script>
+
+
+<script>
+/* ===== ZOOM BLOCK - ULTRA ===== */
+(function(){
+  var lt=0;
+  document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(e){var n=Date.now();if(n-lt<=300)e.preventDefault();lt=n},{passive:false});
+  document.addEventListener('gesturestart',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('gestureend',function(e){e.preventDefault()},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='='||e.key==='0'))e.preventDefault()});
+  window.addEventListener('resize',function(){setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},100)});
+  setTimeout(function(){var vp=document.querySelector('meta[name="viewport"]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover')},500);
+})();
+</script>
+
+<script src="../../protect.js"></script>
 </body>
 </html>
