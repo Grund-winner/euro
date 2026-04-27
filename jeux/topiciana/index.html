@@ -438,7 +438,8 @@ async function fetchPrediction() {
 
 function extractGameStage(d) {
   if (!d || typeof d !== 'object') return { stage: 'unknown', roundId: null, coef: null };
-  const paths = [d.game?.state,d.game?.gameState,d.game?.status,d.game?.stage,d.state,d.status,d.gameState,d.stage,d.data?.game?.state,d.data?.gameState,d.data?.state,d.data?.status];
+  const paths = [
+    d.currentState,d.game?.state,d.game?.gameState,d.game?.status,d.game?.stage,d.state,d.status,d.gameState,d.stage,d.data?.game?.state,d.data?.gameState,d.data?.state,d.data?.status];
   let stage = null;
   for (const p of paths) {
     if (p === undefined || p === null) continue;
@@ -446,8 +447,8 @@ function extractGameStage(d) {
     if (typeof p === 'number') { stage = p === 1 ? 'started' : p === 2 ? 'finished' : 'waiting'; break; }
     if (typeof p === 'boolean') { stage = p ? 'started' : 'waiting'; break; }
   }
-  const rid = d.game?.id ?? d.game?.roundId ?? d.roundId ?? d.id ?? d.data?.game?.id ?? d.data?.roundId;
-  const coef = d.game?.coefficient ?? d.game?.crashPoint ?? d.game?.multiplier ?? d.coefficient;
+  const rid = d.roundConfig?.id ?? d.game?.id ?? d.game?.roundId ?? d.roundId ?? d.id ?? d.data?.game?.id ?? d.data?.roundId;
+  const coef = d.currentCoefficients?.[0] ?? d.stopCoefficients?.[0] ?? d.game?.coefficient ?? d.game?.crashPoint ?? d.game?.multiplier ?? d.coefficient;
   return { stage: stage || 'unknown', roundId: rid || null, coef: coef || null };
 }
 
