@@ -205,7 +205,7 @@ body.page::before {
   display: flex;
   justify-content: center;
   margin-top: 4px;
-  margin-bottom: -8px;
+  margin-bottom: 10px; /* Ajusté pour laisser de la place au logo en dessous */
   z-index: 10;
   position: relative;
 }
@@ -274,11 +274,20 @@ body.page::before {
   }
 }
 
-/* Modification pour centrer le logo Aviator */
+/* Modification pour centrer le logo Aviator et le placer sous le badge */
 .winner {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 5;
+}
+
+.winner img.luck {
+  max-width: 180px; /* Ajustement de la taille pour un meilleur rendu */
+  height: auto;
 }
 </style>
 </head>
@@ -306,16 +315,17 @@ body.page::before {
   </span>
 </div>
 
+<!-- Logo Aviator déplacé ici pour être juste en dessous du badge -->
+<div class="winner">
+    <img class="luck" src="./Aviator_files/avia_logo.svg">
+</div>
+
 <div class="loader">
     <div class="bar"></div>
 </div>
 
 <div class="cv">
     <img class="obloko" src="./Aviator_files/obl.svg">
-</div>
-
-<div class="winner">
-    <img class="luck" src="./Aviator_files/avia_logo.svg">
 </div>
 
 <div class="rocket">
