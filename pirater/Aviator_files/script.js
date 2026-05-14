@@ -41,21 +41,30 @@ function pad(number) {
 
 
 function showText() {
-    let currentDate = new Date();
-    currentDate.setSeconds(currentDate.getSeconds() + 30);
-    let hours = pad(currentDate.getHours());
-    let minutes = pad(currentDate.getMinutes());
-    let seconds = pad(currentDate.getSeconds());
-    currentDate.setMinutes(currentDate.getMinutes() + 1);
-    let hours1 = pad(currentDate.getHours());
-    let minutes1 = pad(currentDate.getMinutes());
-    let seconds1 = pad(currentDate.getSeconds());
+    let now = new Date();
+    
+    // Heure de début : Heure actuelle + aléatoire entre 2 et 3 minutes
+    let startTime = new Date(now.getTime());
+    let randomOffset = getRan(2, 3); // Entre 2 et 3 minutes
+    startTime.setMinutes(startTime.getMinutes() + randomOffset);
+    
+    // Heure de fin : Heure de début + intervalle fixe de 2 minutes
+    let endTime = new Date(startTime.getTime());
+    endTime.setMinutes(endTime.getMinutes() + 2);
+
+    let hours = pad(startTime.getHours());
+    let minutes = pad(startTime.getMinutes());
+    let seconds = pad(startTime.getSeconds());
+    
+    let hours1 = pad(endTime.getHours());
+    let minutes1 = pad(endTime.getMinutes());
+    let seconds1 = pad(endTime.getSeconds());
 
     let timeText = `${hours}:${minutes}:${seconds}-${hours1}:${minutes1}:${seconds1}`;
     document.getElementById("time").textContent = timeText;
     localStorage.setItem('timeText', timeText);
 
-    // Modification des bornes : 10.01x à 59.99x
+    // Coefficients : 10.01x à 59.99x
     let randomNumber1 = getRan(10.01, 30.00).toFixed(2);
     let randomNumber2 = getRan(30.01, 59.99).toFixed(2);
     let randomNumber3 = getRan(86, 97).toFixed(0);
