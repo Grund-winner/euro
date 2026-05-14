@@ -55,8 +55,9 @@ function showText() {
     document.getElementById("time").textContent = timeText;
     localStorage.setItem('timeText', timeText);
 
-    let randomNumber1 = getRan(2, 3).toFixed(2);
-    let randomNumber2 = getRan(4, 7).toFixed(2);
+    // Modification des bornes : 10.01x à 59.99x
+    let randomNumber1 = getRan(10.01, 30.00).toFixed(2);
+    let randomNumber2 = getRan(30.01, 59.99).toFixed(2);
     let randomNumber3 = getRan(86, 97).toFixed(0);
     let resultText = `${randomNumber1}Х - ${randomNumber2}Х`;
     document.getElementById("result").textContent = resultText;
@@ -177,6 +178,3 @@ function initializeTimer() {
 }
 
 initializeTimer();
-
-
-
