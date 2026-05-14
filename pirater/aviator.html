@@ -274,23 +274,23 @@ body.page::before {
   }
 }
 
-/* Modification pour le logo Aviator : centrage parfait horizontal */
+/* Modification pour le logo Aviator : centrage parfait et décalage vers le bas */
 .winner {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 0.3cm; /* Décalage de 0.3cm vers le bas par rapport au badge */
   margin-bottom: 15px;
   position: relative;
   z-index: 5;
-  width: 100%; /* S'assure que le conteneur prend toute la largeur */
+  width: 100%;
 }
 
 .winner img.luck {
   max-width: 180px;
   height: auto;
   display: block;
-  margin: 0 auto; /* Centrage standard supplémentaire */
+  margin: 0 auto;
 }
 </style>
 </head>
@@ -318,7 +318,7 @@ body.page::before {
   </span>
 </div>
 
-<!-- Logo Aviator parfaitement centré sous le badge -->
+<!-- Logo Aviator descendu de 0.3cm pour éviter le chevauchement -->
 <div class="winner">
     <img class="luck" src="./Aviator_files/avia_logo.svg">
 </div>
