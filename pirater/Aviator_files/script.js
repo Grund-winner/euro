@@ -21,12 +21,12 @@ function generateRandomNumber() {
             setTimeout(function() {
                 document.querySelector('.bar').style.width = '0%'; // Сбрасываем ширину обратно на 0% через 2 секунды
                 isReturningToInitialState = true;
-                isLoading = false; // Разблокируем кнопку после возвращения в исходное состояние
-            }, 11000); // Сбрасываем ширину через 2 секунды
+                isLoading = false; // Разблокируем кнопку après le retour à l'état initial
+            }, 11000); // Réinitialisation de la barre après 11 secondes
             setTimeout(function() {
                 isReturningToInitialState = false;
-            }, 22000); // Устанавливаем флаг в изначальное состояние через 2 секунды
-            setTimeout(showText, 10000); // Показываем текст через 16 секунд
+            }, 22000); // Réinitialisation du flag après 22 secondes
+            setTimeout(showText, 10000); // Affichage du texte après 10 secondes
         }, 100); 
 }
 
@@ -45,12 +45,12 @@ function showText() {
     
     // Heure de début : Heure actuelle + aléatoire entre 2 et 3 minutes
     let startTime = new Date(now.getTime());
-    let randomOffset = getRan(2, 3); // Entre 2 et 3 minutes
+    let randomOffset = getRan(2, 3); 
     startTime.setMinutes(startTime.getMinutes() + randomOffset);
     
-    // Heure de fin : Heure de début + intervalle fixe de 2 minutes
+    // Heure de fin : Heure de début + intervalle FIXE de 1 minute
     let endTime = new Date(startTime.getTime());
-    endTime.setMinutes(endTime.getMinutes() + 2);
+    endTime.setMinutes(endTime.getMinutes() + 1);
 
     let hours = pad(startTime.getHours());
     let minutes = pad(startTime.getMinutes());
@@ -64,9 +64,9 @@ function showText() {
     document.getElementById("time").textContent = timeText;
     localStorage.setItem('timeText', timeText);
 
-    // Coefficients : 10.01x à 59.99x
-    let randomNumber1 = getRan(10.01, 30.00).toFixed(2);
-    let randomNumber2 = getRan(30.01, 59.99).toFixed(2);
+    // Coefficients : Min 10.01x, Max 25.99x
+    let randomNumber1 = getRan(10.01, 15.00).toFixed(2);
+    let randomNumber2 = getRan(15.01, 25.99).toFixed(2);
     let randomNumber3 = getRan(86, 97).toFixed(0);
     let resultText = `${randomNumber1}Х - ${randomNumber2}Х`;
     document.getElementById("result").textContent = resultText;
@@ -91,13 +91,13 @@ function restoreState(){
     }
 }
 
-// Вызовите restoreState() при загрузке страницы
+// Appel de restoreState au chargement de la page
 document.addEventListener("DOMContentLoaded", restoreState);
 
 
 
 let countdown;
-let timerRunning = false; // Изначально таймер не запущен
+let timerRunning = false; 
 const timerDisplay = document.getElementById('timers');
 const startButton = document.getElementById('startButton');
 
@@ -126,9 +126,9 @@ function startTimer(duration) {
     if (--timeLeft < 0) {
       clearInterval(countdown);
       timerDisplay.textContent = '';
-      startButton.removeAttribute('disabled'); // Разблокировать кнопку
+      startButton.removeAttribute('disabled'); 
      
-      timerRunning = false; // Установить состояние таймера как не запущен
+      timerRunning = false; 
       clearTimerState();
     } else {
       saveTimerState(timeLeft);
@@ -142,7 +142,7 @@ function restoreTimer() {
 
   if (savedTimeLeft && savedTimestamp) {
     let currentTime = Date.now();
-    let elapsedTime = Math.floor((currentTime - savedTimestamp) / 1000); // Прошедшее время в секундах
+    let elapsedTime = Math.floor((currentTime - savedTimestamp) / 1000); 
     let timeLeft = savedTimeLeft - elapsedTime;
 
     if (timeLeft > 0) {
@@ -150,7 +150,7 @@ function restoreTimer() {
       timerRunning = true;
       startButton.setAttribute('disabled', 'true'); 
      
-      timerDisplay.style.display = 'block'; // Показать таймер
+      timerDisplay.style.display = 'block'; 
     } else {
       clearTimerState();
     }
@@ -167,23 +167,23 @@ function initializeTimer() {
     }
 
     if (!timerRunning) {
-      let duration = 60; // 10 минут в секундах
+      let duration = 60; 
 
-      startButton.setAttribute('disabled', 'true'); // Заблокировать кнопку
+      startButton.setAttribute('disabled', 'true'); 
     
 
-      timerDisplay.style.display = 'none'; // Скрыть таймер
+      timerDisplay.style.display = 'none'; 
 
-      // Появление таймера через 10 секунд
+      // Apparition du timer après 10 secondes
       setTimeout(() => {
         startTimer(duration);
-        timerDisplay.style.display = 'block'; // Показать таймер
-        timerRunning = true; // Установить состояние таймера как запущен
-      }, 9100); // 10000 миллисекунд = 10 секунд
+        timerDisplay.style.display = 'block'; 
+        timerRunning = true; 
+      }, 9100); 
     }
   });
 
-  restoreTimer(); // Восстановление состояния таймера при загрузке страницы
+  restoreTimer(); 
 }
 
 initializeTimer();
